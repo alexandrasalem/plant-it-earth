@@ -56,9 +56,16 @@
       <div class="field">
         <label class="label">Search for a vegetable:</label>
         <div class="control">
-          <input class="input" type="text" placeholder="Text input" />
+          <input class="input" type="text" placeholder="Text input" id = "veg" onkeyup="filterFunction()"/>
         </div>
       </div>
+      <ul id="veggies">
+        <li><a href="#">Carrots</a></li>
+        <li><a href="#">Tomatoes</a></li>
+        <li><a href="#">Zucchinis</a></li>
+      
+      </ul>
     </section>
+    <script src="veg_list_filter.js"></script>
   </body>
 </html>
