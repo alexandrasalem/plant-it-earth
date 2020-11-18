@@ -1,9 +1,0 @@
-.has-bg-img {
-  background: url("https://images.pexels.com/photos/1300972/pexels-photo-1300972.jpeg?cs=srgb&dl=pexels-magda-ehlers-1300972.jpg&fm=jpg")
-    center center;
-  background-size: cover;
-}
-
-#hero-text {
-  text-shadow: 2px 2px 2px black;
-}
