@@ -1,7 +1,7 @@
 # plant-it-earth
 
 ## Notes: 
-    - `npm run devstart` will run the server with nodemon 
+- `npm run devstart` will run the server with nodemon 
 - __[pica](https://nodeca.github.io/pica/demo/)__ - high quality and fast image
 ## File structure:
      controllers: helper-function implementations for get/post reqs for different routes
