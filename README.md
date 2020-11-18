@@ -1,6 +1,6 @@
 # plant-it-earth
 
-## NOTES: 
+## Notes: 
     - <npm run devstart> will run the server with nodemon 
     
 ## File structure:
