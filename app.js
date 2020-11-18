@@ -18,12 +18,12 @@ app.use(logger('dev'));
 //views
 express.static(__dirname, [])
 app.use(express.static(path.join(__dirname, 'public')));
-app.set('views', path.join(__dirname, 'views'));     //these are for when pug is put together
-app.set('view engine', 'pug');
+// app.set('views', path.join(__dirname, 'views'));     //these are for when pug is put together
+// app.set('view engine', 'pug');
 
 //routing
 app.use('/', indexRouter);
-app.use('/plant', plantRouter);
+app.use('/plant/', plantRouter);
 app.use('/search', searchRouter);
   
 
