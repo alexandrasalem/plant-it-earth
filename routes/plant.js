@@ -3,7 +3,7 @@ var router = express.Router();
 var path = require('path');
 const { fileURLToPath } = require('url');
 const url = require('url'); 
-const token= 'u2q6v19zwHC_gIvReQn6mcJ7swYP0ysNVVHTVHQZsq8';
+const token= require('../credentials');
 const trefleUrl= 'https://trefle.io/api/v1/plants?token='+token;
 
 
