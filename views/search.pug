@@ -1,0 +1,27 @@
+doctype html
+head
+  meta(charset='utf-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+  title Hello Bulma!
+  link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css')
+nav.navbar(role='navigation' aria-label='main navigation')
+  .navbar-brand
+    a.navbar-burger.burger(role='button' aria-label='menu' aria-expanded='false' data-target='navbarBasicExample')
+      span(aria-hidden='true')
+      span(aria-hidden='true')
+      span(aria-hidden='true')
+  #navbarBasicExample.navbar-menu
+    .navbar-start
+      a.navbar-item(href='/')  Home 
+      a.navbar-item(href='/search')  Search Veggies 
+section.section
+  .container
+    form(action='./' method='post')
+      label(for='veg') Search for a vegetable:
+      input#veg.input(type='text' placeholder='Text input' name='veg')
+      input(type='submit')
+    if results
+        #search-results.container
+          br
+          h1 Search results:
+          p !{results}

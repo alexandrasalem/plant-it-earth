@@ -26,10 +26,11 @@ async function fetchAll(url) {
 }
 
 router.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname + "/../views/search.html"));
+  res.render("search");
+  // res.sendFile(path.join(__dirname + "/../views/search.pug"));
 });
 
-router.post("/submit", async (req, res) => {
+router.post("/", async (req, res) => {
   console.log("hello");
   url = `${url}&q=${req.body.veg}`;
   var data = await fetchAll(url);
@@ -58,7 +59,7 @@ router.post("/submit", async (req, res) => {
       ids.push(allData.data[index].id);
     }
   }
-  res.render("searched", {
+  res.render("search", {
     results: `${common_names.join("<br>")}`,
   });
 });
