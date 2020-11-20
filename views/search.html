@@ -34,12 +34,11 @@
     </nav>
     <section class="section">
       <div class="container">
-      <div class="field">
-        <label class="label">Search for a vegetable:</label>
-        <div class="control">
-          <input class="input" type="text" placeholder="Text input" id = "veg" onkeyup="filterFunction()"/>
-        </div>
-      </div>
+        <form action="./submit" method="post">
+          <label for="veg">Search for a vegetable:</label>
+          <input class="input" type="text" placeholder="Text input" id = "veg" name = "veg" />
+          <input type="submit">
+        </form>
       <ul id="veggies">
         <li><a href="#">Carrots</a></li>
         <li><a href="#">Potatos</a></li>
