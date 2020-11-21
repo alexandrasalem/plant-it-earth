@@ -14,7 +14,6 @@ router.use(
 
 const fetch = require("node-fetch");
 var url = `https://trefle.io/api/v1/plants/search?token=${ourToken}`;
-// var url = `https://trefle.io/api/v1/plants/?token=${ourToken}&filter[edible]=true`;
 
 async function fetchAll(url) {
   let response = await fetch(url);
@@ -27,7 +26,6 @@ async function fetchAll(url) {
 
 router.get("/", (req, res) => {
   res.render("search");
-  // res.sendFile(path.join(__dirname + "/../views/search.pug"));
 });
 
 router.post("/", async (req, res) => {
@@ -45,7 +43,6 @@ router.post("/", async (req, res) => {
     console.log(next);
   }
   common_names = [];
-  ids = [];
   for (let index = 0; index < allData.data.length; index++) {
     if (
       allData.data[index].common_name != null &&
@@ -54,13 +51,23 @@ router.post("/", async (req, res) => {
         .includes(req.body.veg.toLowerCase())
     ) {
       common_names.push(
-        `<a href = "${allData.data[index].id}">${allData.data[index].common_name}</a>`
+        `<article class="media">
+        <figure class="media-left">
+          <p class="image is-64x64">
+            <img src="${allData.data[index].image_url}" alt = "${allData.data[index].common_name}">
+          </p>
+        </figure>
+        <div class="media-content">
+          <div class="content">
+            <a href = "${allData.data[index].id}">${allData.data[index].common_name}</a>
+          </div>
+        </div>
+      </article>`
       );
-      ids.push(allData.data[index].id);
     }
   }
   res.render("search", {
-    results: `${common_names.join("<br>")}`,
+    results: `${common_names.join("")}`,
   });
 });
 
