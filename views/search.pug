@@ -4,6 +4,7 @@ head
   meta(name='viewport' content='width=device-width, initial-scale=1')
   title Hello Bulma!
   link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css')
+  link(rel='stylesheet' type='text/css' href='/styles/index.css')
 nav.navbar(role='navigation' aria-label='main navigation')
   .navbar-brand
     a.navbar-burger.burger(role='button' aria-label='menu' aria-expanded='false' data-target='navbarBasicExample')
@@ -14,9 +15,8 @@ nav.navbar(role='navigation' aria-label='main navigation')
     .navbar-start
       a.navbar-item(href='/')  Home 
       a.navbar-item(href='/search')  Search Veggies 
-//- section.hero.is-primary.is-medium
-//-   figure.image
-//-     img(src='https://images.pexels.com/photos/1458694/pexels-photo-1458694.jpeg?cs=srgb&dl=pexels-ella-olsson-1458694.jpg&fm=jpg' alt='veggies')
+section#search-hero.hero.is-primary.has-bg-img.is-medium
+  .hero-body
 section.section
   .container
   h1.title.is-2 Search for vegetables
