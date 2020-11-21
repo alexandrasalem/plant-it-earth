@@ -5,7 +5,7 @@ const { fileURLToPath } = require('url');
 const url = require('url'); 
 const fetch= require("node-fetch");
 const token= require('../credentials');
-const desiredSections= ["common_name", "year", "bibliography", "sources"]
+const desiredSections= ["common_name", "year", "bibliography", "sources", "scientific_name", "image_url"];
 
 
 router.get('/', function (req,res) {
@@ -20,14 +20,32 @@ router.get('/:id', function (req,res) {
     fetch(trefleQuery)
     .then(res => res.json())
     .then((data)=> {
-        console.log(data);
         if(data.error){
             res.render('error', {message: data.message});
         }
         else{
-        res.render('plant', {result: data.data, sections: desiredSections});
+            cleanedData= {};
+            for(property in data.data){
+                if(!data.data[property]) continue;
+                console.log(property);
+                let desiredProperty= desiredSections.indexOf(property);
+
+                if(desiredProperty === -1) continue;
+                let propName= property.replace(/\_/, " ");
+                propName= propName.replace(/(?<=\s|^)([a-zA-Z"])/, function(char){return char.toUpperCase();})
+                cleanedData[`${propName}`]= data.data[`${property}`];
+            }
+            console.log(cleanedData);
+            res.render('plant', {result: cleanedData});
         }
-    })
-})
+    });
+});
 
 module.exports = router;
+
+/*
+each section in sections
+              if propName == section && result[propName]
+                strong #{propName}
+                
+*/

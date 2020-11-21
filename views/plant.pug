@@ -3,21 +3,21 @@ extends layout
 block content 
   if !err
     if result.common_name
-      h1(class="title is-2") #{result.common_name} - #{result.scientific_name}
+      h1(class="title is-2") #{result["Common name"]} - #{result["Scientific name"]}
     else
-      h1(class="title is-2") #{result.scientific_name}
+      h1(class="title is-2") #{result["Scientific name"]}
     div(class="media")
-      img(width= "400" class= "media-left" src=result.image_url)
+      img(width= "400" class= "media-left" src=result["Image url"])
       div(class="media-content")
         div(class="content")
           each prop, propName in result
-            each section in sections
-              if propName == section && result[propName]
-                strong #{propName}
-                if section == "sources"
-                  each sourceUrl in result.sources
-                    br
-                    a(href=sourceUrl.url left= "5px") #{sourceUrl.name}
-                else 
-                  p #{prop}
+            if propName == "Sources"
+              strong #{propName}
+              each sourceUrl in result["Sources"]
+                br
+                a(href=sourceUrl.url left= "5px") #{sourceUrl.name}
+            else if propName == "Image url"
+            else 
+              strong #{propName}
+              p #{prop}
       
