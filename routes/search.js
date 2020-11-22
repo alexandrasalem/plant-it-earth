@@ -59,7 +59,7 @@ router.post("/", async (req, res) => {
         </figure>
         <div class="media-content">
           <div class="content">
-            <a href = "${allData.data[index].id}">${allData.data[index].common_name}</a>
+            <a href = "/plant/${allData.data[index].id}">${allData.data[index].common_name}</a>
           </div>
         </div>
       </article>`

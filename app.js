@@ -18,7 +18,7 @@ app.use(logger("dev"));
 //views
 express.static(__dirname, [])
 app.use(express.static(path.join(__dirname, 'public')));
-app.set('views', path.join(__dirname, 'views'));     //these are for when pug is put together
+app.set('views', path.join(__dirname, 'views')); 
 app.set('view engine', 'pug');
 
 //routing
