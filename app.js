@@ -5,6 +5,7 @@ const port = process.env.PORT || 5000;
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var path = require("path");
+const bodyParser= require('body-parser');
 const app = express();
 
 //collecting routers
@@ -14,6 +15,7 @@ var searchRouter = require("./routes/search");
 
 //misc...
 app.use(logger("dev"));
+app.use(bodyParser.urlencoded({ extended: true })); 
 
 //views
 express.static(__dirname, [])

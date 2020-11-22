@@ -24,9 +24,31 @@ block content
     div(class="container is-fullhd")
       div(class="notification is-primary")
         if qa
-          div(class= "level")
           each question in qa
-              div(class="level level-left box")
+              div(class="box")
                 h4(class= "title is-4") #{question.question} 
                 h6(class= "subtitle is-6") Asked by #{question.user}
-                div(id= "response")
+                if question.responses
+                  each response in question.responses
+                    div(id= "response" class="box")
+                      p #{response.user}:
+                      br
+                      p #{response.response}
+                else
+                  div(class="box")
+                    p There are currently no responses to this question...
+        div(class= "box")
+          form(method="POST")
+            label(class="title is-4") Want to ask a question?
+            div(class="field")
+              label(class="label") Username:
+              div(class="control")
+                input(class="input" type="text" placeholder="my_username" name="user")
+            div(class="field")
+              label(class="label") Question:
+              div(class="control")
+                input(class="input" type="text" placeholder="When is it best to plant ____?" name="question")
+            div(class="field")
+              div(class="control")
+                button(class="button is-link is-dark is-primary") Submit
+            

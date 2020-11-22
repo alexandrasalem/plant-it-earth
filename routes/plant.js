@@ -11,7 +11,7 @@ const desiredSections= ["common_name", "year", "bibliography", "sources", "scien
 const testQA= [
     {
         user: "tomatoFan",
-        question: "why tomatoes?",
+        question: "Why tomatoes?",
         responses: [
             {
                 user: "tomatoFan",
@@ -66,7 +66,7 @@ router.get('/:id', function (req,res) {
             cleanedData= {};
             for(property in data.data){
                 if(!data.data[property]) continue;
-                console.log(property);
+                // console.log(property);
                 let desiredProperty= desiredSections.indexOf(property);
 
                 if(desiredProperty === -1) continue;
@@ -74,17 +74,16 @@ router.get('/:id', function (req,res) {
                 propName= propName.replace(/(?<=\s|^)([a-zA-Z"])/, function(char){return char.toUpperCase();})
                 cleanedData[`${propName}`]= data.data[`${property}`];
             }
-            console.log(cleanedData);
+            // console.log(cleanedData);
             res.render('plant', {result: cleanedData, qa: testQA});
         }
     });
 });
 
-module.exports = router;
+router.post('/:id', function(req,res) {
+    // console.log(req);
+    testQA.push(req.body);
+    res.redirect(req.originalUrl);
+})
 
-/*
-each section in sections
-              if propName == section && result[propName]
-                strong #{propName}
-                
-*/
+module.exports = router;
