@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const path = require("path");
 const parser = require("body-parser");
-const ourToken = require("../credentials.js");
+const {token} = require("../credentials.js");
 const port = process.env.PORT || 5000;
 
 router.use(
@@ -13,7 +13,7 @@ router.use(
 );
 
 const fetch = require("node-fetch");
-var url = `https://trefle.io/api/v1/plants/search?token=${ourToken}`;
+var url = `https://trefle.io/api/v1/plants/search?token=${token}`;
 
 async function fetchAll(url) {
   let response = await fetch(url);
@@ -35,7 +35,7 @@ router.post("/", async (req, res) => {
   var allData = data;
   var next = data.links.next;
   while (next != undefined) {
-    let newData = await fetchAll(`https://trefle.io${next}&token=${ourToken}`);
+    let newData = await fetchAll(`https://trefle.io${next}&token=${token}`);
     next = newData.links.next;
     allData.data = allData.data.concat(newData.data);
     allData.links = newData.links;

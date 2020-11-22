@@ -20,4 +20,13 @@ block content
             else 
               strong #{propName}
               p #{prop}
-      
+    h1(class="title is-2") Q&A
+    div(class="container is-fullhd")
+      div(class="notification is-primary")
+        if qa
+          div(class= "level")
+          each question in qa
+              div(class="level level-left box")
+                h4(class= "title is-4") #{question.question} 
+                h6(class= "subtitle is-6") Asked by #{question.user}
+                div(id= "response")

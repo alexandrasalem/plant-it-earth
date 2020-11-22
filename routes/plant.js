@@ -4,9 +4,48 @@ var path = require('path');
 const { fileURLToPath } = require('url');
 const url = require('url'); 
 const fetch= require("node-fetch");
-const token= require('../credentials');
+const {token}= require('../credentials');
 const desiredSections= ["common_name", "year", "bibliography", "sources", "scientific_name", "image_url"];
 
+//for dev: 
+const testQA= [
+    {
+        user: "tomatoFan",
+        question: "why tomatoes?",
+        responses: [
+            {
+                user: "tomatoFan",
+                response: "bc I love them",
+            },
+            {
+                user: "someoneElse",
+                response: "I hate tomatoes!",
+            },
+            {
+                user: "tomatoFan",
+                response: "that's a disgrace...",
+            }
+        ]
+    },
+    {
+        user: "someoneElse",
+        question: "Why NOT tomatoes?",
+        responses: [
+            {
+                user: "tomatoFan",
+                response: "you're wrong!",
+            },
+            {
+                user: "someoneElse",
+                response: "no",
+            },
+            {
+                user: "reasonableUser",
+                response: "you guys are taking this too seriously",
+            }
+        ]
+    }
+];
 
 router.get('/', function (req,res) {
     res.status(320);
@@ -36,7 +75,7 @@ router.get('/:id', function (req,res) {
                 cleanedData[`${propName}`]= data.data[`${property}`];
             }
             console.log(cleanedData);
-            res.render('plant', {result: cleanedData});
+            res.render('plant', {result: cleanedData, qa: testQA});
         }
     });
 });
