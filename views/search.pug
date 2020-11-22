@@ -1,0 +1,34 @@
+doctype html
+head
+  meta(charset='utf-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+  title Hello Bulma!
+  link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css')
+  link(rel='stylesheet' type='text/css' href='/styles/index.css')
+nav.navbar(role='navigation' aria-label='main navigation')
+  .navbar-brand
+    a.navbar-burger.burger(role='button' aria-label='menu' aria-expanded='false' data-target='navbarBasicExample')
+      span(aria-hidden='true')
+      span(aria-hidden='true')
+      span(aria-hidden='true')
+  #navbarBasicExample.navbar-menu
+    .navbar-start
+      a.navbar-item(href='/')  Home 
+      a.navbar-item(href='/search')  Search Veggies 
+section#search-hero.hero.is-primary.has-bg-img.is-medium
+  .hero-body
+section.section
+  .container
+  h1.title.is-2 Search for vegetables
+  p Type in a vegetable you want to learn about and hit submit. Then click on a listed option to learn more.
+  br
+  .container
+    form(action='./' method='post')
+      label(for='veg') Search for a vegetable:
+      input#veg.input(type='text' placeholder='tomato, parsley, etc' name='veg')
+      input.button(type='submit' value='Search')
+    if results
+        #search-results.container
+          br
+          h1 Search results (select to see more information):
+          p !{results}

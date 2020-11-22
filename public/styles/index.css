@@ -1,5 +1,11 @@
-.has-bg-img {
+#primary-hero {
   background: url("https://images.pexels.com/photos/1300972/pexels-photo-1300972.jpeg?cs=srgb&dl=pexels-magda-ehlers-1300972.jpg&fm=jpg")
+    center center;
+  background-size: cover;
+}
+
+#search-hero {
+  background: url("https://images.pexels.com/photos/1458694/pexels-photo-1458694.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260")
     center center;
   background-size: cover;
 }
