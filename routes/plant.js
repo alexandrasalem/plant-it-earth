@@ -54,7 +54,7 @@ router.get('/', function (req,res) {
 
 router.get('/:id', function (req,res) {
     let id= (req.url.split('/'))[1];
-    const trefleQuery= 'https://trefle.io/api/v1/plants/'+id+`/?token=${token}`;
+    const trefleQuery= 'https://trefle.io/api/v1/plants/'+id+`/?token=${token.token}`;
     
     fetch(trefleQuery)
     .then(res => res.json())
