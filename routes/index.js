@@ -22,6 +22,10 @@ router.get("/", (req, res) => {
   // res.sendFile(path.join(__dirname + '/../views/index.html'));
 });
 
+router.get("/about", (req, res) => {
+    res.render('about');
+})
+
 router.get("/test", (req, res) => {
   res.status(200);
   res.write("this is working this is WOOOOOOOORKIIIIIIIIIINGG");

@@ -17,3 +17,9 @@
 .navbar{
   border-bottom: solid black;
 }
+
+#about-us-hero{
+  background: url("https://previews.123rf.com/images/alexis84/alexis841409/alexis84140900130/31500363-collection-of-fresh-fruit-and-vegetables-on-wooden-table-in-form-of-frame-high-quality-studio-shot.jpg")
+    center center;
+  background-size: cover;
+}
