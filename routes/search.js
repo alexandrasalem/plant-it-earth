@@ -13,7 +13,7 @@ router.use(
 );
 
 const fetch = require("node-fetch");
-var url = `https://trefle.io/api/v1/plants/search?token=${ourToken}`;
+var url = `https://trefle.io/api/v1/plants/search?token=${ourToken.token}`;
 
 async function fetchAll(url) {
   let response = await fetch(url);
@@ -35,7 +35,7 @@ router.post("/", async (req, res) => {
   var allData = data;
   var next = data.links.next;
   while (next != undefined) {
-    let newData = await fetchAll(`https://trefle.io${next}&token=${ourToken}`);
+    let newData = await fetchAll(`https://trefle.io${next}&token=${ourToken.token}`);
     next = newData.links.next;
     allData.data = allData.data.concat(newData.data);
     allData.links = newData.links;
