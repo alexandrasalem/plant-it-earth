@@ -37,6 +37,22 @@ block content
                 else
                   div(class="box")
                     p There are currently no responses to this question...
+                div(class="box")
+                  form(method="POST")
+                    label(class="title is-4") Add a response...
+                    div(class="field")
+                      label(class="label") Username:
+                      div(class="control")
+                        input(class="input" type="text" placeholder="my_username" name="user")
+                    div(class="field")
+                      label(class="label") Response:
+                      div(class="control")
+                        input(class="input" type="text" name="response")
+                    div(class="field")
+                      input(type="hidden" name="question" value= `${question.question}`)
+                    div(class="field")
+                      div(class="control")
+                        button(class="button is-rounded is-link") Submit
         div(class= "box")
           form(method="POST")
             label(class="title is-4") Want to ask a question?
@@ -50,5 +66,5 @@ block content
                 input(class="input" type="text" placeholder="When is it best to plant ____?" name="question")
             div(class="field")
               div(class="control")
-                button(class="button is-link is-dark is-primary") Submit
+                button(class="button is-rounded is-link") Submit
             

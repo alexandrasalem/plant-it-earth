@@ -35,11 +35,7 @@ router.post("/", async (req, res) => {
   var allData = data;
   var next = data.links.next;
   while (next != undefined) {
-<<<<<<< HEAD
     let newData = await fetchAll(`https://trefle.io${next}&token=${token}`);
-=======
-    let newData = await fetchAll(`https://trefle.io${next}&token=${ourToken.token}`);
->>>>>>> main
     next = newData.links.next;
     allData.data = allData.data.concat(newData.data);
     allData.links = newData.links;

@@ -53,9 +53,9 @@ router.get('/', function (req,res) {
 });
 
 router.get('/:id', function (req,res) {
+    console.log("is this happening?")
     let id= (req.url.split('/'))[1];
-    const trefleQuery= 'https://trefle.io/api/v1/plants/'+id+`/?token=${token.token}`;
-    
+    const trefleQuery= 'https://trefle.io/api/v1/plants/'+id+`/?token=${token}`;
     fetch(trefleQuery)
     .then(res => res.json())
     .then((data)=> {
@@ -81,9 +81,23 @@ router.get('/:id', function (req,res) {
 });
 
 router.post('/:id', function(req,res) {
-    // console.log(req);
-    testQA.push(req.body);
+    console.log("is this happening?")
+    if(req.body.response){
+        console.log(req.body);
+        for(let i= 0; i < testQA.length; ++i){
+            if(testQA[i].question === req.body.question){
+                testQA[i].responses.push({user: req.body.user, response: req.body.response})
+            }
+            
+        }
+    }
+    else if(req.body.question){
+        testQA.push(req.body);
+        res.redirect(req.originalUrl);
+    }
+    else {}
     res.redirect(req.originalUrl);
+    
 })
 
 module.exports = router;
