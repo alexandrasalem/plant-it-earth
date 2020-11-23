@@ -10,10 +10,18 @@
   background-size: cover;
 }
 
+#gettingstarted-hero {
+  background: url("https://images.pexels.com/photos/1002703/pexels-photo-1002703.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260")
+    center center;
+  background-size: cover;
+}
+
 #hero-text {
   text-shadow: 2px 2px 2px black;
 }
 
-.navbar{
+.navbar {
   border-bottom: solid black;
 }
+
+/* another image i like: https://images.pexels.com/photos/2847908/pexels-photo-2847908.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500 */

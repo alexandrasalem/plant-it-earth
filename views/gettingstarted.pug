@@ -1,0 +1,39 @@
+extends layout
+
+block content 
+  if !err
+    section#gettingstarted-hero.hero.is-primary.has-bg-img.is-medium
+      .hero-body
+    section.section
+      .container
+        h1.is-2(class='title') How do vegetables grow?
+        p
+          | Plants are pretty simple. Generally they need soil, sunlight, and water to
+          | do well.
+        h1.title.is-2 An introductory video
+        figure.image.is-fluid
+          iframe.has-ratio(width='640' height='360' src='https://www.youtube.com/embed/B0DrWAUsNSc' frameborder='10' allowfullscreen='')  
+        h1.title.is-2 Containers, raised beds, or in the ground
+        p
+          | Depending on your situation, one of these three types of gardening may work best for you. 
+          br
+          h2.subtitle.is-4 Containers (pots, planters, baskets, etc.)
+          figure.image.is-fluid
+            img(width='640' height='360', src = 'https://images.pexels.com/photos/4503273/pexels-photo-4503273.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260', alt='vegetables in pots')
+          p
+            | If you are in an apartment or other living situation where you can't put anything in the ground, container gardening would be best for you. Container gardening refers to placing your plants in pots or other planters, instead of putting them directly in a ground. Container gardening has its own difficulties, but if you pay attention to sizing requirements for different seeds, it can work perfectly well and offers you flexibility.
+        h1.title.is-2 Other resources
+        ul
+          li
+            | The Old Farmer&apos;s Almanac: 
+            a(href='https://www.farmersalmanac.com/') https://www.farmersalmanac.com/
+            ul
+              li
+                | The Old Farmer&apos;s Almanac has been published since 1792. It is a
+                | referenc book containing weather forecasts, planting charts, recipes,
+                | etc.
+              li
+                | The gardening main page is here: 
+                a(href='https://www.farmersalmanac.com/category/home-garden') https://www.farmersalmanac.com/category/home-garden
+          li
+            | Hello
