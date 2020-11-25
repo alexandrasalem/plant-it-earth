@@ -4,13 +4,7 @@ const queries = require("../controllers/mostpopular");
 
 router.get("/", async (req, res) => {
   var popularPlants = await queries.getPopularPlants();
-  console.log(popularPlants.rows);
-  console.log(typeof popularPlants);
-  console.log(popularPlants.json());
-  Object.values(popularPlants).forEach((element) => {
-    console.log(element);
-  });
-  res.render("mostpopular");
+  res.render("mostpopular", { results: popularPlants });
 });
 
 module.exports = router;

@@ -1,9 +1,20 @@
 const { response } = require("express");
 var db = require("../database");
+const fetch = require("node-fetch");
+const ourToken = require("../credentials.js");
 
-async function getPopularPlants() {
-  try {
-    let response = await db.query(`
+async function getTrefleImg(id) {
+  var url = `https://trefle.io/api/v1/plants/${id}?token=${ourToken.token}`;
+  let res = await fetch(url);
+  let data = await res.json();
+  if (data.error) {
+    return data.error;
+  } else {
+    return data.data.image_url;
+  }
+}
+
+let plants_query = `
     SELECT p.name, p.plant_id, count(*) as count
     FROM users u1
     JOIN questions q
@@ -15,13 +26,55 @@ async function getPopularPlants() {
     JOIN plants p
     ON p.plant_id = q.plant_id
     GROUP BY p.plant_id
-    ORDER BY count
-      `);
-    // clean = [];
-    // for (let i = 0; i < response.rows.length; ++i) {
+    ORDER BY count DESC
+      `;
+let users_query = `
+    SELECT p.name, p.plant_id, count(*) as count
+    FROM users u1
+    JOIN questions q
+    ON q.user_id=u1.user_id
+    LEFT JOIN responses r
+    ON r.question_id= q.question_id
+    LEFT JOIN users u2
+    ON r.user_id = u2.user_id
+    JOIN plants p
+    ON p.plant_id = q.plant_id
+    GROUP BY p.plant_id
+    ORDER BY count DESC
+  `;
 
-    // }
-    return response;
+async function getPopularPlants() {
+  try {
+    let response = await db.query(plants_query);
+    console.log(response.rows);
+    let names = [];
+    let ids = [];
+    let image_urls = [];
+    for (let i = 0; i < response.rows.length; ++i) {
+      names.push(response.rows[i].name);
+      ids.push(response.rows[i].plant_id);
+      image_url = await getTrefleImg(response.rows[i].plant_id);
+      image_urls.push(image_url);
+    }
+
+    let html_results = [];
+    for (let i = 0; i < names.length; ++i) {
+      html_results.push(
+        `<article class="media">
+            <figure class="media-left">
+              <p class="image is-64x64">
+                <img src="${image_urls[i]}" alt = "${names[i]}">
+              </p>
+            </figure>
+            <div class="media-content">
+              <div class="content">
+                <a href = "/plant/${ids[i]}">${names[i]}</a>
+              </div>
+            </div>
+          </article>`
+      );
+    }
+    return html_results;
   } catch (error) {
     console.log(error);
   }
