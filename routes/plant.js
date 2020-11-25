@@ -6,53 +6,12 @@ const url = require('url');
 const {token}= require('../credentials');
 const queries= require("../controllers/plant");
 
-// //for dev: 
-// const testQA= [
-//     {
-//         user: "tomatoFan",
-//         question: "Why tomatoes?",
-//         responses: [
-//             {
-//                 user: "tomatoFan",
-//                 response: "bc I love them",
-//             },
-//             {
-//                 user: "someoneElse",
-//                 response: "I hate tomatoes!",
-//             },
-//             {
-//                 user: "tomatoFan",
-//                 response: "that's a disgrace...",
-//             }
-//         ]
-//     },
-//     {
-//         user: "someoneElse",
-//         question: "Why NOT tomatoes?",
-//         responses: [
-//             {
-//                 user: "tomatoFan",
-//                 response: "you're wrong!",
-//             },
-//             {
-//                 user: "someoneElse",
-//                 response: "no",
-//             },
-//             {
-//                 user: "reasonableUser",
-//                 response: "you guys are taking this too seriously",
-//             }
-//         ]
-//     }
-// ];
-
 router.get('/', function (req,res) {
     res.status(320);
     res.redirect('/'); //returns to the home url
 });
 
 router.get('/:id', function (req,res) {
-    console.log("is this happening?")
     let id= (req.url.split('/'))[1];
     const trefleQuery= 'https://trefle.io/api/v1/plants/'+id+`/?token=${token}`;
 
@@ -64,11 +23,13 @@ router.get('/:id', function (req,res) {
 });
 
 router.post('/:id', function(req,res) {
-    console.log("is this happening?")
-    if(req.body.response){
+    if(req.body.response){  //could maybe add a query here to verify that the question exists, i don't think that can happen... but ya know... code lines 
         console.log(req.body);
     }
     else if(req.body.question){
+        // console.log(req.body);
+        let id= (req.url.split('/'))[1];
+        console.log(queries.postPlantQ(req.body.user, req.body.question, id));
     }
     else {}
     res.redirect(req.originalUrl);
@@ -77,22 +38,8 @@ router.post('/:id', function(req,res) {
 
 module.exports = router;
 
-//query brainstorming
-/*
-select question, question_id 
-from questions
-where id= x; where x is the value of the plant id
-
-select response 
-from responses r, res_ques_rel rel
-where r.id= rel.res_id and rel.q_id= question_id <- passed in value retreived from previous query
-
-combine these?
-*/
-
-
 //VERBAL DESIGN:
-//**GET
+//**GET -- DONE
 //Check database for questions related to a plant_id
 // if yes:
 //      Find all questions and corresponding responses 
@@ -100,9 +47,17 @@ combine these?
 //      toJSON and then pass to pug
 // if not: 
 //      don't pass anything 
+
 //**POST
 //Questions:
 //  Add a new field to questions (make sure to relate to user)
+// if user doesn't exist...
+//  add to user table
+
 //Responses:
-//  add entry to response table
-//  Find id of question (how?) and relate to id of response
+/*
+add entry to response table
+if user doesn't exist...
+    Add to user table
+//  Find id of question (query UGH) and add to response row
+*/
