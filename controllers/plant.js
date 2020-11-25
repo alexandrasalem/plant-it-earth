@@ -74,7 +74,8 @@ async function getPlantQA(plantid){
 }
 
 //POST questions implementation
-async function postPlantQ(username, question, plant_id) {
+async function postPlantQ(username, question, plantName, plant_id) {
+    //check if there is a user_id associated with that username
     let result= await db.query(`
         SELECT user_id
         FROM users
@@ -87,6 +88,21 @@ async function postPlantQ(username, question, plant_id) {
         RETURNING user_id
         `);
     const user_id= result.rows[0].user_id;
+    
+    // check if there is a plant associated with that plant_id
+    let plantCheck= await db.query(`
+        SELECT * 
+        FROM plants
+        WHERE plant_id=${plant_id}
+    `);
+    if(!plantCheck.rows[0]){
+        let cleanedName= plantName.replace(/'/, "\\\\'\'");
+        console.log(cleanedName);
+        db.query(`
+            INSERT INTO plants (plant_id, name)
+            VALUES (${plant_id}, '${cleanedName}')
+        `);
+    }
     let postResult= await db.query(`
         INSERT INTO questions (user_id, question_text, general, plant_id, timestamp_question)
         VALUES (${user_id}, '${question}', 'no', ${plant_id}, NOW()) 
