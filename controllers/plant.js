@@ -104,8 +104,34 @@ async function postPlantQ(username, question, plant_id) {
 
 }
 
-async function postPlantR(){
+async function postPlantR(username, question, response){
+    let user_id= await db.query(`
+        SELECT user_id
+        From users
+        WHERE username='${username}'
+    `)
+    if(!user_id.rows[0])
+        user_id= await db.query(`
+        INSERT INTO users (username)
+        VALUES ('${username}')
+        RETURNING user_id
+        `);
 
+    user_id= user_id.rows[0].user_id;
+
+    let question_id= await db.query(`
+        SELECT question_id
+        FROM questions
+        WHERE question_text='${question}'
+    `);
+    question_id= question_id.rows[0].question_id;
+    // console.log(user_id,question_id);
+  
+    let postResults= db.query(`
+        INSERT INTO responses (question_id, user_id, response_text, timestamp_response)
+        VALUES ('${question_id}', '${user_id}', '${response}', NOW())
+    `);
+    return postResults;
 }
 
 //GET QUERY DRAFT

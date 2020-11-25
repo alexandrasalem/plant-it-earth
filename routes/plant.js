@@ -24,7 +24,8 @@ router.get('/:id', function (req,res) {
 
 router.post('/:id', function(req,res) {
     if(req.body.response){  //could maybe add a query here to verify that the question exists, i don't think that can happen... but ya know... code lines 
-        console.log(req.body);
+        // console.log(req.body);
+        console.log(queries.postPlantR(req.body.user, req.body.question, req.body.response));
     }
     else if(req.body.question){
         // console.log(req.body);
