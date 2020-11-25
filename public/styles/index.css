@@ -16,6 +16,12 @@
   background-size: cover;
 }
 
+#mostpopular-hero {
+  background: url("https://images.pexels.com/photos/1213859/pexels-photo-1213859.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500")
+    center center;
+  background-size: cover;
+}
+
 #hero-text {
   text-shadow: 2px 2px 2px black;
 }

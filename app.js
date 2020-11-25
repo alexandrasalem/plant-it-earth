@@ -12,6 +12,7 @@ var indexRouter = require("./routes/index");
 var plantRouter = require("./routes/plant");
 var searchRouter = require("./routes/search");
 var gettingStartedRouter = require("./routes/gettingstarted");
+var mostPopularRouter = require("./routes/mostpopular");
 
 //misc...
 app.use(logger("dev"));
@@ -27,6 +28,7 @@ app.use("/", indexRouter);
 app.use("/plant/", plantRouter);
 app.use("/search/", searchRouter);
 app.use("/gettingstarted/", gettingStartedRouter);
+app.use("/mostpopular/", mostPopularRouter);
 
 //start the server
 app.listen(port, () => {

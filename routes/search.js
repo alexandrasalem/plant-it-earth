@@ -17,7 +17,7 @@ var url = `https://trefle.io/api/v1/plants/search?token=${ourToken.token}`;
 
 async function fetchAll(url) {
   let response = await fetch(url);
-  if (response.status == 200) {
+  if (response.status === 200) {
     let json = await response.json();
     return json;
   }
@@ -35,7 +35,9 @@ router.post("/", async (req, res) => {
   var allData = data;
   var next = data.links.next;
   while (next != undefined) {
-    let newData = await fetchAll(`https://trefle.io${next}&token=${ourToken.token}`);
+    let newData = await fetchAll(
+      `https://trefle.io${next}&token=${ourToken.token}`
+    );
     next = newData.links.next;
     allData.data = allData.data.concat(newData.data);
     allData.links = newData.links;
