@@ -25,8 +25,24 @@
 }
 
 #about-us-hero{
-  background: url("https://previews.123rf.com/images/alexis84/alexis841409/alexis84140900130/31500363-collection-of-fresh-fruit-and-vegetables-on-wooden-table-in-form-of-frame-high-quality-studio-shot.jpg")
+  background: url("https://images.pexels.com/photos/1414651/pexels-photo-1414651.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260")
     center center;
   background-size: cover;
+}
+
+.head-shots {
+    border-radius: 50%;
+}
+
+.contributorTitle{
+  text-align: center;
+}
+
+.incorrect-button:focus{
+  background-color: hsl(348, 100%, 61%);
+}
+
+.correct-button:focus{
+  background-color: hsl(141, 71%, 48%);
 }
 /* another image i like: https://images.pexels.com/photos/2847908/pexels-photo-2847908.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500 */

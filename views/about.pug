@@ -5,18 +5,34 @@ block content
         div(class="hero-body")
             div(class="container has-text-centered")
                 h1(class="title" id="hero-text") About Us
-    section(class="tile is-ancestor")
-        div(class="tile is-parent is-4")
-            div(class="tile box is-child")
-                h1(class="title") Samuel Parker
-                img(src="https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12210622/Golden-Retriever-Puppy.jpg")
-                p I am clearly a young golden retriever just trying to make the world a better place.
+    section
+        div(class="container is-fullhd")
+            div(class="notification is-success")
+                h4(class="subtitle is-4") Plant-It Earth 
+                p(class="is-medium") #{AboutUs}
                 br
-                h6(class="title is-6") Favorite Veggie:
-                h6(class="subtite is-6") Zucchini
-        div(class="tile is-parent")
-            div(class="tile box is-child")
-                h1(class="title") Tatiana Martynova
-        div(class="tile is-parent")
-            div(class="tile box is-child")
-                h1(class="title") Alex Salem
+                section(class="tile is-ancestor")
+                    div(class="tile is-parent is-4")
+                        div(class="tile box is-child")
+                            h1(class="title contributorTitle") Samuel Parker
+                            img(src="/images/IMG_1040.jpg" class= "head-shots")
+                            br
+                            br
+                            p #{SamAbout}
+                            br
+                            h2(class="title is-4 contributorTitle") Find the lie...
+                            button(class="button is-rounded is-secondary incorrect-button" type="submit") I love zucchinis
+                            br
+                            br
+                            button(class="button is-rounded is-secondary correct-button" type="submit") I cannot stand C++
+                            br
+                            br
+                            button(class="button is-rounded is-secondary incorrect-button" type="submit") I have never broken a bone
+                    div(class="tile is-parent")
+                        div(class="tile box is-child")
+                            h1(class="title contributorTitle") Tatiana Martynova
+                            p #{TatianaAbout}
+                    div(class="tile is-parent")
+                        div(class="tile box is-child")
+                            h1(class="title contributorTitle") Alex Salem
+                            p #{AlexAbout}

@@ -1,27 +1,7 @@
 var express = require("express");
 var router = express.Router();
-var path = require("path");
-
-var db = require("../database");
-
-router.get("/pg", (req, res) => {
-
-  db.query('SELECT NOW() as now', (err, results) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send(err);
-    } else {
-      res.send(JSON.stringify(results));
-    }
-  });
-
-});
 
 router.get("/", (req, res) => {
-  res.render("index");
-});
-
-router.get("/about", (req, res) => {
     const aboutUs= `is an application dedicated to making gardening accessible 
     to hobbyists and those looking to be self-sustaining alike. Especially with the prevalence
     of the COVID-19 pandemic, more and more people are looking to try new things and we want to
@@ -37,10 +17,4 @@ router.get("/about", (req, res) => {
     res.render('about', {AboutUs: aboutUs, SamAbout: samAbout});
 })
 
-router.get("/test", (req, res) => {
-  res.status(200);
-  res.write("this is working this is WOOOOOOOORKIIIIIIIIIINGG");
-  res.send();
-});
-
-module.exports = router;
+module.exports= router;
