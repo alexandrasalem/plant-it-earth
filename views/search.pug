@@ -7,16 +7,29 @@ block content
     section.section
       .container
       h1.title.is-2 Search for vegetables
-      p Type in a vegetable you want to learn about and hit search. Then click on a listed option to learn more.
-      br
-      .container
+      if results
+        .container
+          h1 Search results (select to see more information):
+          p !{results}
+          h1 Didn't find what you were looking for? 
+          br
+          p Type the search in again below and we'll do a full search. This may take a few minutes.
+          form(action = "./" method='post')
+            input#continue.input(type='text' placeholder='tomato, parsley, etc' name='continue')
+            br
+            input.button(type='submit' value='Continue searching?')
+      else if fullResults
+        #search-results.container
+          br
+          h1 Search results (select to see more information):
+          p !{fullResults}
+      else
+        p Type in a vegetable you want to learn about and hit search. Then click on a listed option to learn more.
+        br
         form(action='./' method='post')
           label(for='veg') Search for a vegetable:
           input#veg.input(type='text' placeholder='tomato, parsley, etc' name='veg')
           br
           input.button(type='submit' value='Search')
-        if results
-            #search-results.container
-              br
-              h1 Search results (select to see more information):
-              p !{results}
+
+

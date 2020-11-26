@@ -8,10 +8,17 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  let common_names = await queries.searchAll(req);
-  res.render("search", {
-    results: `${common_names}`,
-  });
+  console.log(req.body);
+  if (req.body.continue != undefined) {
+    console.log(req.body.continue);
+    let fullResults = await queries.searchAll(req);
+    res.render("search", { fullResults: `${fullResults}` });
+  } else {
+    let results = await queries.searchOne(req);
+    res.render("search", {
+      results: `${results}`,
+    });
+  }
 });
 
 module.exports = router;

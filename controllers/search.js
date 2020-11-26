@@ -3,8 +3,39 @@ const { token } = require("../credentials.js");
 
 var url = `https://trefle.io/api/v1/plants/search?token=${token}`;
 
-async function searchAll(request) {
+async function searchOne(request) {
   url = `${url}&q=${request.body.veg}`;
+  var data = await fetch(url);
+  var data = await data.json();
+  let common_names = [];
+  for (let index = 0; index < data.data.length; index++) {
+    if (
+      data.data[index].common_name != null &&
+      data.data[index].common_name
+        .toLowerCase()
+        .includes(request.body.veg.toLowerCase())
+    ) {
+      common_names.push(
+        `<article class="media">
+      <figure class="media-left">
+        <p class="image is-64x64">
+          <img src="${data.data[index].image_url}" alt = "${data.data[index].common_name}">
+        </p>
+      </figure>
+      <div class="media-content">
+        <div class="content">
+          <a href = "/plant/${data.data[index].id}">${data.data[index].common_name}</a>
+        </div>
+      </div>
+    </article>`
+      );
+    }
+  }
+  return common_names.join("");
+}
+
+async function searchAll(request) {
+  url = `${url}&q=${request.body.continue}`;
   var data = await fetch(url);
   var data = await data.json();
   var allData = data;
@@ -24,7 +55,7 @@ async function searchAll(request) {
       allData.data[index].common_name != null &&
       allData.data[index].common_name
         .toLowerCase()
-        .includes(request.body.veg.toLowerCase())
+        .includes(request.body.continue.toLowerCase())
     ) {
       common_names.push(
         `<article class="media">
@@ -46,3 +77,4 @@ async function searchAll(request) {
 }
 
 exports.searchAll = searchAll;
+exports.searchOne = searchOne;
