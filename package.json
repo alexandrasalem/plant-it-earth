@@ -9,7 +9,7 @@
   "scripts": {
     "devstart": "nodemon app.js",
     "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx jest"
   },
   "repository": {
     "type": "git",
@@ -22,11 +22,13 @@
   },
   "homepage": "https://github.com/alexandrasalem/plant-it-earth#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
     "express-pug": "^1.0.0",
     "http": "0.0.1-security",
     "http-errors": "^1.8.0",
+    "jest": "^26.6.3",
     "morgan": "^1.10.0",
     "node-fetch": "^2.6.1",
     "pg": "^8.5.1",
