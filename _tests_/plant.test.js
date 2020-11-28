@@ -1,7 +1,7 @@
 // const { ExpectationFailed } = require("http-errors");
 const controllerFunctions= require("../controllers/plant");
-const creds= require("../credentials");
-const token= process.env.TREFLE_TOKEN || creds.token;
+// const creds= require("../credentials");
+const token= process.env.TREFLE_TOKEN // || creds.token;
 var db = require("../database");
 
 describe("getTrefle return data should have certain attributes formatted properly for pug", () => {

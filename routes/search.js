@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router();
 const path = require("path");
 const parser = require("body-parser");
-const creds = require("../credentials.js");
-const token = process.env.TREFLE_TOKEN || creds.token;
+// const creds = require("../credentials.js");
+const token = process.env.TREFLE_TOKEN //|| creds.token;
 const port = process.env.PORT || 5000;
 
 router.use(

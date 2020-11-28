@@ -1,5 +1,5 @@
 const pg = require('pg');
-const creds = require("./credentials");
+// const creds = require("./credentials");
 
 /**
  * SQL connection details
@@ -7,7 +7,7 @@ const creds = require("./credentials");
 const connectionName =
   process.env.INSTANCE_CONNECTION_NAME || 'plantit-296404:us-central1:plantit';
 const dbUser = process.env.SQL_USER || 'postgres';
-const dbPassword = process.env.SQL_PASSWORD || creds.dbpass;
+const dbPassword = process.env.SQL_PASSWORD //|| creds.dbpass;
 const dbName = process.env.SQL_NAME || 'postgres';
 const host = '35.239.186.62';
 
