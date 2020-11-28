@@ -3,7 +3,8 @@ var router = express.Router();
 var path = require('path');
 const { fileURLToPath } = require('url');
 const url = require('url'); 
-const {token}= require('../credentials');
+const creds= require('../credentials');
+const token= process.env.TREFLE_TOKEN || creds.token;
 const queries= require("../controllers/plant");
 
 router.get('/', function (req,res) {

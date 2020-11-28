@@ -1,11 +1,12 @@
 // const { ExpectationFailed } = require("http-errors");
 const controllerFunctions= require("../controllers/plant");
 const creds= require("../credentials");
+const token= process.env.TREFLE_TOKEN || creds.token;
 var db = require("../database");
 
 describe("getTrefle return data should have certain attributes formatted properly for pug", () => {
     it('cleanedData should contain a common name', done =>{
-        const trefleQuery= 'https://trefle.io/api/v1/plants/'+182512+`/?token=${creds.token}`; //this is a plant known to have the necessary attributes
+        const trefleQuery= 'https://trefle.io/api/v1/plants/'+182512+`/?token=${token}`; //this is a plant known to have the necessary attributes
         controllerFunctions.getTrefle(trefleQuery)
         .then(result => {
             try {   
@@ -18,7 +19,7 @@ describe("getTrefle return data should have certain attributes formatted properl
         }); 
     })
     it('cleanedData should contain a scientific name', done =>{
-        const trefleQuery= 'https://trefle.io/api/v1/plants/'+182512+`/?token=${creds.token}`; //this is a plant known to have the necessary attributes
+        const trefleQuery= 'https://trefle.io/api/v1/plants/'+182512+`/?token=${token}`; //this is a plant known to have the necessary attributes
         controllerFunctions.getTrefle(trefleQuery)
         .then(result => {
             try {   
