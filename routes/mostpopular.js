@@ -4,7 +4,7 @@ const queries = require("../controllers/mostpopular");
 
 router.get("/", async (req, res) => {
   var popularPlants = await queries.getPopularPlants();
-  // var popularUsers = await queries.getPopularUsers();
+  var popularUsers = await queries.getPopularUsers();
   res.render("mostpopular", {
     results: popularPlants,
     // results2: popularUsers,

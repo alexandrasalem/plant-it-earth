@@ -28,6 +28,7 @@ let plants_query = `
     GROUP BY p.plant_id
     ORDER BY count DESC
       `;
+
 let users_query = `
     SELECT counts.username, SUM(counts.count) as count
     FROM ((SELECT u1.username, u1.user_id, count(*) as count
@@ -44,6 +45,21 @@ let users_query = `
     GROUP BY counts.username
     ORDER BY count DESC
   `;
+
+async function get_user_plants(id) {
+  let user_plants = await db.query(`
+SELECT *
+FROM ((SELECT u1.user_id, u1.username, p.plant_id
+  FROM users u1, plants p, questions q
+  WHERE u1.user_id = q.user_id AND q.plant_id = p.plant_id)
+  UNION
+  (SELECT u1.user_id, u1.username, p.plant_id
+  FROM users u1, plants p, responses r, questions q
+  WHERE u1.user_id = r.user_id AND q.plant_id = p.plant_id AND q.question_id = r.question_id)) as user_plants
+WHERE user_plants.user_id = '${id}'
+  `);
+  return user_plants;
+}
 
 async function getPopularPlants() {
   try {
@@ -66,13 +82,19 @@ async function getPopularPlants() {
 
 async function getPopularUsers() {
   try {
-    let response = await db.query(users_query);
-    console.log(response.rows);
+    let users = await db.query(users_query);
+    console.log(users.rows);
+    // console.log(popular_user_plants);
     let names = [];
-    for (let i = 0; i < response.rows.length; ++i) {
-      names.push(`${response.rows[i].username} <br>`);
+    let user_plants = [];
+    index = Math.min(10, users.rows.length);
+    console.log(index);
+    for (let i = 0; i < index; ++i) {
+      let popular_user_plants = await get_user_plants(users.rows[i].user_id);
+      console.log(popular_user_plants.rows);
+      //   names.push(`${users.rows[i].username} <br>`);
     }
-    return names.join(" ");
+    // return names.join(" ");
   } catch (error) {
     console.log(error);
   }
