@@ -7,6 +7,14 @@ block content
     section.section
       .container
       h1.title.is-2 Search for vegetables
+      p Type in a vegetable you want to learn about and hit search. Then click on a listed option to learn more.
+      br
+      form()
+        label(for='veg') Search for a vegetable:
+        input#veg.input(type='text' placeholder='tomato, parsley, etc' name='veg')
+        input.button(type='submit' onclick="window.location =  '/search/' + veg.value; return false;" value = "Search")
+      br
+      br
       if results
         .container
           h1 Search results (select to see more information):
@@ -19,12 +27,8 @@ block content
                 .content
                   a(href="/plant/" + val[2]) #{val[0]}
           br
-          h1.is-1 Didn't find what you were looking for? 
+          h1.is-1 Didn't find what you were looking for? Click below to run a full search. This may take a few minutes.
           input.button(type='submit' onclick="window.location = window.location + '/full'; return false;" value="Keep looking")
-          br
-          br
-          h1 Want to try a new search?
-          input.button(type='submit' onclick="window.location = '/search'; return false;" value = "Back to search")
       else if fullResults
         #search-results.container
           br
@@ -37,17 +41,3 @@ block content
               .media-content
                 .content
                   a(href="/plant/" + val[2]) #{val[0]}
-          br
-          h1 Want to try a new search?
-          input.button(type='submit' onclick="window.location = '/search'; return false;" value = "Back to search")
-      else
-        p Type in a vegetable you want to learn about and hit search. Then click on a listed option to learn more.
-        br
-        form()
-          label(for='veg') Search for a vegetable:
-          input#veg.input(type='text' placeholder='tomato, parsley, etc' name='veg')
-          br
-          input(type='submit' onclick="window.location = window.location + veg.value; return false;")
-
-
-
