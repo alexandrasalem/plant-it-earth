@@ -10,26 +10,44 @@ block content
       if results
         .container
           h1 Search results (select to see more information):
-          p !{results}
-          h1 Didn't find what you were looking for? 
+          each val in results
+            article.media
+              figure.media-left
+                p.image.is-64x64
+                  img(src = val[1] alt= val[0])
+              .media-content
+                .content
+                  a(href="/plant/" + val[2]) #{val[0]}
           br
-          p Type the search in again below and we'll do a full search. This may take a few minutes.
-          form(action = "./" method='post')
-            input#continue.input(type='text' placeholder='tomato, parsley, etc' name='continue')
-            br
-            input.button(type='submit' value='Continue searching?')
+          h1.is-1 Didn't find what you were looking for? 
+          input.button(type='submit' onclick="window.location = window.location + '/full'; return false;" value="Keep looking")
+          br
+          br
+          h1 Want to try a new search?
+          input.button(type='submit' onclick="window.location = '/search'; return false;" value = "Back to search")
       else if fullResults
         #search-results.container
           br
           h1 Search results (select to see more information):
-          p !{fullResults}
+          each val in fullResults
+            article.media
+              figure.media-left
+                p.image.is-64x64
+                  img(src = val[1] alt= val[0])
+              .media-content
+                .content
+                  a(href="/plant/" + val[2]) #{val[0]}
+          br
+          h1 Want to try a new search?
+          input.button(type='submit' onclick="window.location = '/search'; return false;" value = "Back to search")
       else
         p Type in a vegetable you want to learn about and hit search. Then click on a listed option to learn more.
         br
-        form(action='./' method='post')
+        form()
           label(for='veg') Search for a vegetable:
           input#veg.input(type='text' placeholder='tomato, parsley, etc' name='veg')
           br
-          input.button(type='submit' value='Search')
+          input(type='submit' onclick="window.location = window.location + veg.value; return false;")
+
 
 
