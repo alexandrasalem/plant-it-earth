@@ -7,7 +7,15 @@ block content
     section.section
       .container
         h1.title.is-1 Most popular plants
-        p !{results1}
+        .tile.box.is-10.is-shadowless
+          p Below are the most popular plants, meaning the plants that users have asked the most questions about. Click on one to learn more and see the questions and responses for that plant. 
         br
-        h1.title.is-1 Most popular users
-        p !{results2}
+        .container
+          each val in results
+            article.media
+              figure.media-left
+                p.image.is-64x64
+                  img(src = val[1] alt= val[0])
+              .media-content
+                .content
+                  a(href="/plant/" + val[2]) #{val[0]}

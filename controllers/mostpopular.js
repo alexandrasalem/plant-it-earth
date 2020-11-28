@@ -49,32 +49,14 @@ async function getPopularPlants() {
   try {
     let response = await db.query(plants_query);
     console.log(response.rows);
-    let names = [];
-    let ids = [];
-    let image_urls = [];
-    for (let i = 0; i < response.rows.length; ++i) {
-      names.push(response.rows[i].name);
-      ids.push(response.rows[i].plant_id);
-      image_url = await getTrefleImg(response.rows[i].plant_id);
-      image_urls.push(image_url);
-    }
-
     let html_results = [];
-    for (let i = 0; i < names.length; ++i) {
-      html_results.push(
-        `<article class="media">
-            <figure class="media-left">
-              <p class="image is-64x64">
-                <img src="${image_urls[i]}" alt = "${names[i]}">
-              </p>
-            </figure>
-            <div class="media-content">
-              <div class="content">
-                <a href = "/plant/${ids[i]}">${names[i]}</a>
-              </div>
-            </div>
-          </article>`
-      );
+    for (let i = 0; i < response.rows.length; ++i) {
+      image_url = await getTrefleImg(response.rows[i].plant_id);
+      html_results.push([
+        response.rows[i].name,
+        image_url,
+        response.rows[i].plant_id,
+      ]);
     }
     return html_results;
   } catch (error) {
