@@ -142,6 +142,58 @@ async function postPlantR(username, question, plant_id, response){
     return postResults;
 }
 
+//wipes a user and all their associated questions/responses, mainly intended for testing but could be used in the future 
+async function wipeUser(username){
+    //get userid and associated questions
+    let user_id= await db.query(`
+        SELECT user_id
+        FROM users
+        WHERE username= '${username}'
+    `);
+
+    if(!user_id.rows[0]) return;
+    user_id= user_id.rows[0].user_id;
+    
+
+    let question_ids= await db.query(`
+        SELECT question_id
+        FROM questions q 
+        where q.user_id=${user_id}
+    `);
+
+    if(question_ids.rows.length){
+        //build list of question ids
+        let cleanedQuestionIds= [];
+        for(let i= 0; i < question_ids.rows.length; ++i){
+            cleanedQuestionIds.push(question_ids.rows[i].question_id);
+        }
+
+        // delete responses associated with user_id and quesiton ids
+        let result= await db.query(`
+            DELETE 
+            FROM responses r
+            WHERE r.user_id=${user_id}
+            OR r.question_id IN (${cleanedQuestionIds})
+            RETURNING r.response_id;
+        `);
+    }
+
+    //delete questions and responses associated with that question
+    let result= await db.query(`
+        DELETE 
+        FROM questions q
+        WHERE q.user_id=${user_id}
+    `);
+     
+    // remove user
+    result= await db.query(`
+        DELETE 
+        FROM users
+        WHERE user_id=${user_id}
+    `);
+}
+
+exports.wipeUser= wipeUser;
 exports.postPlantQ= postPlantQ;
 exports.postPlantR= postPlantR;
 exports.getPlantQA= getPlantQA;
