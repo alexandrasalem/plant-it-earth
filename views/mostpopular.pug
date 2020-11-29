@@ -11,7 +11,7 @@ block content
           p Below are the most popular plants, meaning the plants that users have asked the most questions about. Click on one to learn more and see the questions and responses for that plant. 
         br
         .container
-          each val in results
+          each val in results1
             article.media
               figure.media-left
                 p.image.is-64x64
@@ -19,3 +19,11 @@ block content
               .media-content
                 .content
                   a(href="/plant/" + val[2]) #{val[0]}
+        //- br
+        //- .container
+        //-   h1.title.is-1 Most popular users
+        //-   .container
+        //-     each val in results2
+        //-       p #{val[0]}
+        //-       each i in Array(val[0].length)
+        //-         p #{i}

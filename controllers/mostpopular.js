@@ -30,7 +30,7 @@ let plants_query = `
       `;
 
 let users_query = `
-    SELECT counts.username, SUM(counts.count) as count
+    SELECT counts.user_id, counts.username, SUM(counts.count) as count
     FROM ((SELECT u1.username, u1.user_id, count(*) as count
     FROM users u1
     JOIN questions q
@@ -42,18 +42,18 @@ let users_query = `
     JOIN responses r
     ON r.user_id=u1.user_id
     GROUP BY u1.user_id)) as counts
-    GROUP BY counts.username
+    GROUP BY counts.user_id, counts.username
     ORDER BY count DESC
   `;
 
 async function get_user_plants(id) {
   let user_plants = await db.query(`
-SELECT *
-FROM ((SELECT u1.user_id, u1.username, p.plant_id
+SELECT DISTINCT *
+FROM ((SELECT u1.user_id, u1.username, p.plant_id, p.name
   FROM users u1, plants p, questions q
   WHERE u1.user_id = q.user_id AND q.plant_id = p.plant_id)
   UNION
-  (SELECT u1.user_id, u1.username, p.plant_id
+  (SELECT u1.user_id, u1.username, p.plant_id, p.name
   FROM users u1, plants p, responses r, questions q
   WHERE u1.user_id = r.user_id AND q.plant_id = p.plant_id AND q.question_id = r.question_id)) as user_plants
 WHERE user_plants.user_id = '${id}'
@@ -66,7 +66,8 @@ async function getPopularPlants() {
     let response = await db.query(plants_query);
     console.log(response.rows);
     let html_results = [];
-    for (let i = 0; i < response.rows.length; ++i) {
+    index = Math.min(10, response.rows.length);
+    for (let i = 0; i < index; ++i) {
       image_url = await getTrefleImg(response.rows[i].plant_id);
       html_results.push([
         response.rows[i].name,
@@ -83,21 +84,33 @@ async function getPopularPlants() {
 async function getPopularUsers() {
   try {
     let users = await db.query(users_query);
-    console.log(users.rows);
-    // console.log(popular_user_plants);
-    let names = [];
-    let user_plants = [];
+    let results = [];
     index = Math.min(10, users.rows.length);
-    console.log(index);
     for (let i = 0; i < index; ++i) {
       let popular_user_plants = await get_user_plants(users.rows[i].user_id);
       console.log(popular_user_plants.rows);
-      //   names.push(`${users.rows[i].username} <br>`);
+      user_plant_ids = [];
+      user_plant_names = [];
+      user_plant_urls = [];
+      for (let i = 0; i < popular_user_plants.rows.length; i++) {
+        user_plant_ids.push(popular_user_plants.rows[i].plant_id);
+        user_plant_names.push(popular_user_plants.rows[i].name);
+        image_url = await getTrefleImg(popular_user_plants.rows[i].plant_id);
+        user_plant_urls.push(image_url);
+      }
+      results.push([
+        users.rows[i].username,
+        user_plant_ids,
+        user_plant_names,
+        user_plant_urls,
+      ]);
     }
-    // return names.join(" ");
+    console.log(results);
+    return results;
   } catch (error) {
     console.log(error);
   }
 }
+
 exports.getPopularPlants = getPopularPlants;
 exports.getPopularUsers = getPopularUsers;
