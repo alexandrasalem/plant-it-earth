@@ -15,6 +15,7 @@ var searchRouter = require("./routes/search");
 
 var usdaRouter = require("./routes/usda");
 var gettingStartedRouter = require("./routes/gettingstarted");
+var mostPopularRouter = require("./routes/mostpopular");
 
 //misc...
 app.use(logger("dev"));
@@ -32,6 +33,7 @@ app.use("/plant/", plantRouter);
 app.use("/search/", searchRouter);
 app.use("/usda/", usdaRouter);
 app.use("/gettingstarted/", gettingStartedRouter);
+app.use("/mostpopular/", mostPopularRouter);
 
 //start the server
 app.listen(port, () => {
