@@ -1,25 +1,27 @@
 extends layout
 
 block content 
-  if result["Common name"]
-    h1(class="title is-2") #{result["Common name"]} - #{result["Scientific name"]}
-  else
-    h1(class="title is-2") #{result["Scientific name"]}
-  div(class="media")
+  section(class="hero is-primary has-bg-img hero-body container is-fullhd has-text-centered" id="plant-hero")
+    if result["Common name"]
+      h1(class="title is-2" id="hero-text") #{result["Common name"]} - #{result["Scientific name"]}
+    else
+      h1(class="title is-2" id="hero-text") #{result["Scientific name"]}
+  div(class="media plant-media")
     img(width= "400" class= "media-left" src=result["Image url"])
     div(class="media-content")
       div(class="content")
         each prop, propName in result
           if propName == "Sources"
             strong #{propName}
+            br
             each sourceUrl in result["Sources"]
-              br
-              a(href=sourceUrl.url left= "5px") #{sourceUrl.name}
+              a(href=sourceUrl.url left= "5px") #{sourceUrl.name} - 
           else if propName == "Image url"
           else 
             strong #{propName}
             p #{prop}
-  h1(class="title is-2") Q&A
+  section(class="hero is-secondary has-bg-img hero-body container is-fullhd has-text-centered" id="QA-hero")
+    h1(class="title is-2") Q&A
   div(class="container is-fullhd")
     div(class="notification is-primary")
       if qa
