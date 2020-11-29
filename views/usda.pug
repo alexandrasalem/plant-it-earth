@@ -1,0 +1,39 @@
+extends layout
+
+block content
+  
+  section#search-hero.hero.is-primary.has-bg-img.is-medium
+    .hero-body
+  section.section
+    .container
+    h1.title.is-2 What is USDA Hardiness Zone & Map?
+    p When planing your garden it’s necessary to determine the difference between which plants will thrive in your region (defined by a zipcode) and which plants may need additional care and temperature control.
+    div.row2
+      img.image(class="columm2" src="/USDA Zones.jpg")
+
+      p.column2 That’s where hardiness zones with maps come in handy.
+      p.column2 A planting zone map lays out which hardiness zone you live in. These zones are broken down by a 5 degree difference in the average minimum temperature. 
+      p.column2 Once you’ve determined which hardiness, or planting zone, you live in then you can use this information for selecting your garden plants.
+    h1.title.is-2 What is my USDA Zone ?
+    p Type in your zip and hit submit. 
+    br
+    .container
+      form(action='/usda' method='post')
+        label(for='zip') Search by zip:
+        input#zip.input(type='text' placeholder='90210' name='zip')
+        input.button(type='submit' value='Search')
+      if error
+        div ERROR: !{error}
+      if results
+          #search-results.container
+            br
+            h1 You live in USDA zone: !{results}
+
+          h1.title.is-2 Information about my USDA zone:
+          p more info 
+
+          h1.title.is-2 What can I plant in my USDA hardiness zone?
+          div.zoneData 
+            ul
+              each val in zoneData
+                li= val.common_name

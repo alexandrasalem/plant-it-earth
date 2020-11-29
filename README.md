@@ -11,3 +11,6 @@
 
 ## Database:
 - The application is connected to GCP PSQL instance.
+
+## Data Scripts for Database creation: 
+## Data Script for data extraction: 
