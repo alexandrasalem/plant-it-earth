@@ -1,11 +1,11 @@
 var express = require("express");
-var createError = require("http-errors");
-const http = require("http");
+// var createError = require("http-errors");
+// const http = require("http");
 const port = process.env.PORT || 5000;
-var cookieParser = require("cookie-parser");
+// var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var path = require("path");
-const bodyParser= require('body-parser');
+const bodyParser = require("body-parser");
 const app = express();
 
 //collecting routers
@@ -19,7 +19,7 @@ var mostPopularRouter = require("./routes/mostpopular");
 
 //misc...
 app.use(logger("dev"));
-app.use(bodyParser.urlencoded({ extended: true })); 
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //views
 express.static(__dirname, []);
