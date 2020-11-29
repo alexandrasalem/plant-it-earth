@@ -14,7 +14,10 @@ router.get("/", (req, res) => {
     done much gardening while in college, it was a family past-time while growing up to plant in our
     backyard. 
     `;
-    res.render('about', {AboutUs: aboutUs, SamAbout: samAbout});
+    const tatianaAbout= `
+    2nd-Year Computer Science graduate student at Portland State University. I recently moved to a place with a large garden area and very excited to start my gardening journey.
+    `;
+    res.render('about', {AboutUs: aboutUs, SamAbout: samAbout, TatianaAbout: tatianaAbout});
 })
 
 module.exports= router;
