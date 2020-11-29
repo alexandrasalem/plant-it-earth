@@ -47,6 +47,14 @@ function setDB() {
         console.error(err);    
         } 
     });
+
+     //create table USDA_ZONE_IDS for storing values for usda_zones 
+     db.query("CREATE TABLE usda_zone_ids (id SERIAL PRIMARY KEY, usda_zone_name VARCHAR(50));", (err, results) => {
+      if (err) {
+        console.error(err);    
+        } 
+    });
+
 }
 
 setDB();
