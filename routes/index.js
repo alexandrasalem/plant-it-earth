@@ -18,7 +18,6 @@ router.get("/pg", (req, res) => {
 
 router.get("/", (req, res) => {
   res.render("index");
-  // res.sendFile(path.join(__dirname + '/../views/index.html'));
 });
 
 router.get("/test", (req, res) => {

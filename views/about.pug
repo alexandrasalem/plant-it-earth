@@ -1,0 +1,63 @@
+extends layout
+
+block content
+    section(class="hero is-primary has-bg-img is-medium" id="about-us-hero")
+        div(class="hero-body")
+            div(class="container has-text-centered")
+                h1(class="title" id="hero-text") About Us
+    section
+        div(class="container is-fullhd")
+            div(class="notification is-success")
+                h4(class="subtitle is-4") Plant-It Earth 
+                p(class="is-medium") #{AboutUs}
+                br
+                section(class="tile is-ancestor")
+                    div(class="tile is-parent is-4")
+                        div(class="tile box is-child")
+                            h1(class="title contributorTitle") Samuel Parker
+                            img(src="/images/IMG_1040.jpg" class= "head-shots")
+                            br
+                            br
+                            p #{SamAbout}
+                            br
+                            h2(class="title is-4 contributorTitle") Find the lie...
+                            button(class="button is-rounded is-secondary incorrect-button" type="submit") I love zucchinis
+                            br
+                            br
+                            button(class="button is-rounded is-secondary correct-button" type="submit") I cannot stand C++
+                            br
+                            br
+                            button(class="button is-rounded is-secondary incorrect-button" type="submit") I have never broken a bone
+                    div(class="tile is-parent")
+                        div(class="tile box is-child")
+                            h1(class="title contributorTitle") Tatiana Martynova
+                            img(src="/images/IMG-Tatiana.png" class= "head-shots")
+                            br
+                            br
+                            br
+                            p #{TatianaAbout}
+                            br
+                            br
+                            h2(class="title is-4 contributorTitle") Find the lie...
+                            button(class="button is-rounded is-secondary incorrect-button" type="submit") I am really good at gardening
+                            br
+                            br
+                            button(class="button is-rounded is-secondary correct-button" type="submit") I enjoy working with data and databases
+                            br
+                            br
+                            button(class="button is-rounded is-secondary correct-button" type="submit") I am ambidextrous
+                    div(class="tile is-parent")
+                    div(class="tile is-parent is-4")
+                        div(class="tile box is-child")
+                            h1(class="title contributorTitle") Alex Salem
+                            img(src="/images/alex_pic.jpg", class = "head-shots is-square")
+                            p #{AlexAbout}
+                            br
+                            h2(class="title is-4 contributorTitle") Find the lie...
+                            button(class="button is-rounded is-secondary incorrect-button" type="submit") I'm from Maryland
+                            br
+                            br
+                            button(class="button is-rounded is-secondary incorrect-button" type="submit") I hate cilantro
+                            br
+                            br
+                            button(class="button is-rounded is-secondary correct-button" type="submit") That's not my dog
