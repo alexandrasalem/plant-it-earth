@@ -28,7 +28,7 @@ router.post('/:id', function(req,res) {
     const id= (req.url.split('/'))[1];
     if(req.body.response){
         queries.postPlantR(req.body.user, req.body.question, id, req.body.response)
-        .then(res => {
+        .then(() => {
             res.redirect(req.originalUrl);
         })
         .catch(err => {
@@ -36,17 +36,15 @@ router.post('/:id', function(req,res) {
         });
     }
     else if(req.body.question){
-        queries.postPlantQ(req.body.user, req.body.question, id)
-        .then(res => {
+        queries.postPlantQ(req.body.user, req.body.question, req.body.plantName, id)
+        .then(() => {
             res.redirect(req.originalUrl);
         })
         .catch(err => {
             res.render('error', { message: err});
         });
     }
-    else {}
-    res.redirect(req.originalUrl);
-    
+    else res.render('error', { message: "Something went wrong."});
 })
 
 module.exports = router;

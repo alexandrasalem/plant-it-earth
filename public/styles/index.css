@@ -24,25 +24,28 @@
   border-bottom: solid black;
 }
 
-#about-us-hero{
+#about-us-hero {
   background: url("https://images.pexels.com/photos/1414651/pexels-photo-1414651.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260")
     center center;
   background-size: cover;
 }
 
 .head-shots {
-    border-radius: 50%;
+  border-radius: 50%;
 }
 
-.contributorTitle{
+.contributorTitle {
   text-align: center;
 }
 
-.incorrect-button:focus{
+.incorrect-button:focus {
   background-color: hsl(348, 100%, 61%);
 }
 
-.correct-button:focus{
+.correct-button:focus {
   background-color: hsl(141, 71%, 48%);
 }
 /* another image i like: https://images.pexels.com/photos/2847908/pexels-photo-2847908.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500 */
+.is-64x64 {
+  overflow: hidden;
+}
