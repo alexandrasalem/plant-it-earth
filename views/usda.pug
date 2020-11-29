@@ -35,17 +35,42 @@ block content
 
     if results
       br
-      h1.title.is-2 Information about my USDA zone:
-      p more info 
+      h1.title.is-2 Information about your USDA zone
+      if (results == '1a' || results == '1b' || results == '2a' || results == '2b' ) 
+        div Plants in this zone are tough, vigorous, and adaptable to cold extremes. Surprisingly, many of these are also xeriscape plants with high drought tolerance. The Yukon, Siberia, and parts of Alaska are representatives of this harsh planting zone. Planting choices must be acclimated to the tundra and harsh conditions. Select plants that can withstand temperatures of – 50 degrees Fahrenheit in winter.
 
-      if results == '5b'
-        div regional data 1
+      if (results == '3a' || results == '3b')
+        div Zone 3 is cold. In fact, it’s the coldest zone in the continental United States, just barely reaching down from Canada. 
+          p Zone 3 is known for its very cold winters, which can be a problem for perennials. But it’s also known for its especially short growing season, which can be a problem for annual plants as well. In zone 3 you are going to have just 3 months of frost-free weather. This is simply not enough time for some vegetables to grow and produce. Because of this, an essential part of zone 3 vegetable gardening is starting seeds indoors in the spring.
 
-      if results == '8b'
-        div regional data 2
+      if (results == '4a' || results == '4b')
+        div Zone 4 is one of the shortest growing seasons of the USDA zones. The first and last frost dates can fluctuate a week or two, but as a general rule, frost dates are used for zones to plan garden planting.
 
-      h1.title.is-2 What can I plant in my USDA hardiness zone?
-      div.zoneData 
+      if (results == '5a' || results == '5b')
+        div Young starts are very susceptible to late season freezes. Zone 5 can experience temperatures of -10 to 0 degrees Fahrenheit. Planting anywhere near the time of year could lead to plant freeze. 
+          p You need to know the date of your last frost. This is the optimum time for planting vegetables in zone 5.
+
+      if (results == '6a' || results == '6b')
+        div Zone 6 has a medium length growing season, it is suited to both warm and cold weather plants, rendering this zone accommodating to all but the most tender or those that rely exclusively on hot, dry weather to thrive. 
+          p One of the most important factors when growing vegetables in zone 6 is knowing the correct planting times for zone 6. Read on to find out when to plant vegetables in zone 6.
+
+      if (results == '7a' || results == '7b')
+        div Zone 7 has great climate for growing vegetables. With a relatively cool spring and fall and a hot, long summer, it’s ideal for virtually all vegetables, as long as you know when to plant them. 
+          p Zone 7 is a great climate for cool season gardening. The spring comes much earlier than in colder zones, but it also lasts, which can’t be said for warmer zones. Similarly, temperatures in autumn get nice and low for quite a while without dipping below freezing. There are plenty of vegetables for zone 7 that thrive in cool temperatures and will really only grow in the colder months of spring and autumn. They’ll also tolerate some frost, which means they can be grown outside even when other plants can’t.
+
+      if (results == '8a' || results == '8b')
+        div Zone 8 is one of the warmer regions of the country. As such, you can easily enjoy gardening simply because the summer growing season is long enough to do so. 
+          p The most important thing to consider is your microclimate. Zone 8 is actually divided into two sections – 8a and 8b. In zone 8a, temperatures will dip as low as 10-15 degrees F., and in zone 8b it can drop to 15-20 F.
+          p The approximate last freeze date for zone 8 is March 15 and November 15 for the first freeze date in the fall. That said, there are no hard and fast rules; these are just annual averages. Some crops can be damaged during a light freeze and others are hardier and can withstand the cold temperatures.
+
+      if (results == '9a' || results == '9b' || results == '10a' || results == '10b' || results == '11a' || results == '11b' || results == '12a' || results == '12b')
+        div This region is perfectly suited to not only a spring-sown garden for summer crops but also a winter vegetable garden. Temperatures are mild enough for growing vegetables in winter in this zone. 
+          p Choose a site that has at least 8 hours of direct sunlight each day with well-draining soil. If you are using an existing garden, remove all old plant detritus and weeds. I
+          p Fall crops do much better when started from transplants than from seed, and transplants should always be used for tomatoes and peppers. 
+
+
+      h1.title.is-2 What you can plant in your USDA hardiness zone?
+      div.zoneData  
         ul
           each val in zoneData
             li= val.common_name
