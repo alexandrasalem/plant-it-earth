@@ -1,12 +1,11 @@
 var express = require("express");
 var router = express.Router();
 var path = require("path");
-
 var db = require("../database");
 
 router.get("/pg", (req, res) => {
 
-  db.query('SELECT NOW() as now', (err, results) => {
+  db.query('select * from usda_zones where zipcode = 80210;', (err, results) => {
     if (err) {
       console.error(err);
       res.status(500).send(err);

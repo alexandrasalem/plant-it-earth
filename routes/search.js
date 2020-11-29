@@ -7,21 +7,33 @@ router.get("/", (req, res) => {
   res.render("search");
 });
 
-router.get("/:veg", async (req, res) => {
+router.get("/:veg/:page_num", async (req, res) => {
   let search_veg = req.url.split("/")[1];
-  let results = await queries.searchOne(search_veg);
+  let page_num = req.url.split("/")[2];
+  let results = await queries.searchOne(search_veg, page_num);
   console.log(results);
-  res.render("search", {
-    results: results,
-  });
-});
-
-router.get("/:veg/full", async (req, res) => {
-  let search_veg = req.url.split("/")[1];
-  let fullResults = await queries.searchAll(search_veg);
-  res.render("search", {
-    fullResults: fullResults,
-  });
+  if ((results.length === 0) & (page_num === "1")) {
+    res.render("search", {
+      noResults: "yes",
+      term: search_veg.replace("%20", " "),
+    });
+  } else if (results.length === 0) {
+    res.render("search", {
+      noResultsNow: "yes",
+      term: search_veg.replace("%20", " "),
+    });
+  } else if (page_num == 1) {
+    res.render("search", {
+      results: results,
+      term: search_veg.replace("%20", " "),
+    });
+  } else {
+    res.render("search", {
+      results: results,
+      term: search_veg.replace("%20", " "),
+      notOne: "yes",
+    });
+  }
 });
 
 module.exports = router;

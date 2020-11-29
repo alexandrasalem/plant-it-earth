@@ -16,8 +16,19 @@
   background-size: cover;
 }
 
+<<<<<<< HEAD
 #mostpopular-hero {
   background: url("https://images.pexels.com/photos/1213859/pexels-photo-1213859.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500")
+=======
+#plant-hero {
+  background: url("https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260")
+    center center;
+  background-size: cover;
+}
+
+#QA-hero {
+  background: url("https://images.pexels.com/photos/1640770/pexels-photo-1640770.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260")
+>>>>>>> f8ef15635267b741b60fd8a1901395aadecdb845
     center center;
   background-size: cover;
 }
@@ -30,6 +41,15 @@
   border-bottom: solid black;
 }
 
+<<<<<<< HEAD
+=======
+.plant-media {
+  margin: 0%;
+  border: solid black;
+}
+
+/* another image i like: https://images.pexels.com/photos/2847908/pexels-photo-2847908.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500 */
+>>>>>>> f8ef15635267b741b60fd8a1901395aadecdb845
 .is-64x64 {
   overflow: hidden;
 }
