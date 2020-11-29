@@ -1,47 +1,33 @@
-doctype html
-head
-  meta(charset='utf-8')
-  meta(name='viewport' content='width=device-width, initial-scale=1')
-  title Plant-it Earth
-  link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css')
-  link(rel='stylesheet' type='text/css' href='/styles/index.css')
-nav.navbar(role='navigation' aria-label='main navigation')
-  .navbar-brand
-    a.navbar-burger.burger(role='button' aria-label='menu' aria-expanded='false' data-target='navbarBasicExample')
-      span(aria-hidden='true')
-      span(aria-hidden='true')
-      span(aria-hidden='true')
-  #navbarBasicExample.navbar-menu
-    .navbar-start
-      a.navbar-item(href='/')  Home 
-      a.navbar-item(href='/search/')  Search Veggies 
-      a.navbar-item(href='/usda/')  Search USDA 
-section#primary-hero.hero.is-primary.has-bg-img.is-large
-  .hero-body
-    .container.has-text-centered
-      h1#hero-text.title.is-1 Plant-it Earth
-      h2#hero-text.subtitle.is-2 Home Gardening Resources
-section.section
-  .container
-    h1.title.is-2 General gardening tips
-    br
-    h2.subtitle.is-4  Location &amp; plot size
-    p
-      | You want to choose a location with the most sun. Most vegetables are &quot;full-sun&quot;, meaning they want at least six hours of sunlight a day.
-    br
-    h2.subtitle.is-4  Soil &amp; seeds
-    p
-      | Choose all-purpose soil. Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic tempora quod iusto quos eius soluta? Voluptatibus debitis eum quod sint amet eos, consectetur sed! Aspernatur neque corrupti impedit esse consequatur?
-    br
-    h2.subtitle.is-4  Picking vegetables &amp; when to plant
-    p See our search tool.
-section.section
-  .container
-    h1.title.is-2 About
-    p This project was created by Alexandra Salem, Tatiana Luchian, and Samuel Parker.
-    br
-    a.button.is-medium(href='https://github.com/alexandrasalem/plant-it-earth' target='_blank')
-      span.icon
-        i.fab.fa-github
-      span Github
-script(defer='' src='https://use.fontawesome.com/releases/v5.14.0/js/all.js')
+extends layout
+
+block content 
+  if !err
+    section#primary-hero.hero.is-primary.has-bg-img.is-large
+      .hero-body
+        .container.has-text-centered
+          h1#hero-text.title.is-1 Plant-it Earth
+          h2#hero-text.subtitle.is-2 Home Gardening Resources
+    section.section
+      .container
+        h1.title.is-2 General gardening tips
+        br
+        h2.subtitle.is-4  Location &amp; plot size
+        p
+          | You want to choose a location with the most sun. Most vegetables are &quot;full-sun&quot;, meaning they want at least six hours of sunlight a day.
+        br
+        h2.subtitle.is-4  Soil &amp; seeds
+        p
+          | Choose all-purpose soil. Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic tempora quod iusto quos eius soluta? Voluptatibus debitis eum quod sint amet eos, consectetur sed! Aspernatur neque corrupti impedit esse consequatur?
+        br
+        h2.subtitle.is-4  Picking vegetables &amp; when to plant
+        p See our search tool.
+    section.section
+      .container
+        h1.title.is-2 About
+        p This project was created by Alexandra Salem, Tatiana Luchian, and Samuel Parker.
+        br
+        a.button.is-medium(href='https://github.com/alexandrasalem/plant-it-earth' target='_blank')
+          span.icon
+            i.fab.fa-github
+          span Github
+    script(defer='' src='https://use.fontawesome.com/releases/v5.14.0/js/all.js')
