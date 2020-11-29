@@ -1,0 +1,21 @@
+extends layout
+
+block content
+
+  section#search-hero.hero.is-primary.has-bg-img.is-medium
+    .hero-body
+  section.section
+    .container
+  h1.title.is-2 What is your zip
+  p Type in your zip and hit submit. 
+  br
+  .container
+    form(action='/usda' method='post')
+      label(for='zip') Search by zip:
+      input#zip.input(type='text' placeholder='90210' name='zip')
+      input.button(type='submit' value='Search')
+    if results
+        #search-results.container
+          br
+          h1 You live in USDA zone: !{results}
+
