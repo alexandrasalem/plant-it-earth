@@ -32,6 +32,10 @@
   margin-left: 10px;
 }
 
+#errorText {
+  color: red;
+}
+
 #zip
 {
   max-width: 70px;
@@ -45,7 +49,7 @@
 
 .searchBox{
   float: left;
-  width: 45%;
+  width: 25%;
   margin-right:2%;
 }
 
