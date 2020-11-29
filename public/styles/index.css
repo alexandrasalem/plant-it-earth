@@ -40,6 +40,27 @@
   border-bottom: solid black;
 }
 
+#about-us-hero {
+  background: url("https://images.pexels.com/photos/1414651/pexels-photo-1414651.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260")
+    center center;
+  background-size: cover;
+}
+
+.head-shots {
+  border-radius: 50%;
+}
+
+.contributorTitle {
+  text-align: center;
+}
+
+.incorrect-button:focus {
+  background-color: hsl(348, 100%, 61%);
+}
+
+.correct-button:focus {
+  background-color: hsl(141, 71%, 48%);
+}
 .plant-media {
   margin: 0%;
   border: solid black;
