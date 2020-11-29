@@ -3,9 +3,9 @@ const { token } = require("../credentials.js");
 
 var url = `https://trefle.io/api/v1/plants/search?token=${token}`;
 
+// searches for the vegetable info, by page of trefle and search query
 async function searchOne(search_veg, page_num) {
   url = `${url}&page=${page_num}&q=${search_veg}`;
-  console.log(url);
   var data = await fetch(url);
   var data = await data.json();
   let search_results = [];

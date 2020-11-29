@@ -1,9 +1,12 @@
 var express = require("express");
 var router = express.Router();
-var path = require("path");
 
 router.get("/", (req, res) => {
-  res.render("gettingstarted");
+  try {
+    res.render("gettingstarted");
+  } catch (error) {
+    res.render("error", { message: "Something went wrong." });
+  }
 });
 
 module.exports = router;
