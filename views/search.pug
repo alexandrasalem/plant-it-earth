@@ -16,7 +16,7 @@ block content
             .control
               input#veg.input(type='text' placeholder='tomato, carrot, etc' name='veg')
             .control
-              input.button(type='submit' onclick="window.location =  '/search/' + veg.value + '/1'; return false;" value = "Search")
+              input.button(type='submit' onclick="window.location =  '/search/' + veg.value.replace(' ', '%20') + '/1'; return false;" value = "Search")
       if noResults === "yes"
         h1 No results found for 
           strong !{term}

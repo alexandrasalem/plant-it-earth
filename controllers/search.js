@@ -5,6 +5,7 @@ var url = `https://trefle.io/api/v1/plants/search?token=${token}`;
 
 async function searchOne(search_veg, page_num) {
   url = `${url}&page=${page_num}&q=${search_veg}`;
+  console.log(url);
   var data = await fetch(url);
   var data = await data.json();
   let search_results = [];
@@ -14,7 +15,7 @@ async function searchOne(search_veg, page_num) {
         data.data[index].common_name != null &&
         data.data[index].common_name
           .toLowerCase()
-          .includes(search_veg.toLowerCase())
+          .includes(search_veg.toLowerCase().replace("%20", " "))
       ) {
         search_results.push([
           data.data[index].common_name,

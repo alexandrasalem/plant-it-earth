@@ -15,22 +15,22 @@ router.get("/:veg/:page_num", async (req, res) => {
   if ((results.length === 0) & (page_num === "1")) {
     res.render("search", {
       noResults: "yes",
-      term: search_veg,
+      term: search_veg.replace("%20", " "),
     });
   } else if (results.length === 0) {
     res.render("search", {
       noResultsNow: "yes",
-      term: search_veg,
+      term: search_veg.replace("%20", " "),
     });
   } else if (page_num == 1) {
     res.render("search", {
       results: results,
-      term: search_veg,
+      term: search_veg.replace("%20", " "),
     });
   } else {
     res.render("search", {
       results: results,
-      term: search_veg,
+      term: search_veg.replace("%20", " "),
       notOne: "yes",
     });
   }
