@@ -16,26 +16,30 @@ block content
       p.column2 A planting zone map lays out which hardiness zone you live in. These zones are broken down by a 5 degree difference in the average minimum temperature. 
       br
       p.column2 Once you’ve determined which hardiness, or planting zone, you live in then you can use this information for selecting your garden plants.
-    h1.title.is-2 What is my USDA Zone ?
-    p Type in your zip and hit submit. 
     br
+    h1.title.is-2 Find out your USDA Zone
+    p Type in your zip and hit submit. 
     .container
-      form(action='/usda' method='post')
-        label(for='zip') Search by zip:
-        input#zip.input(type='text' placeholder='90210' name='zip')
-        input.button(type='submit' value='Search')
-      if error
-        div ERROR: !{error}
+      div.row2
+        div.searchBox
+          form(action='/usda' method='post')
+            input#zip.input(type='text' placeholder='90210' name='zip')
+            input#searchBtn.button(type='submit' value='Search')
+          if error
+            div ERROR: !{error}
+        if results
+          div.column2
+            #search-results.container
+              h1 You live in USDA zone: 
+                b !{results}
+
       if results
-          #search-results.container
-            br
-            h1 You live in USDA zone: !{results}
+        br
+        h1.title.is-2 Information about my USDA zone:
+        p more info 
 
-          h1.title.is-2 Information about my USDA zone:
-          p more info 
-
-          h1.title.is-2 What can I plant in my USDA hardiness zone?
-          div.zoneData 
-            ul
-              each val in zoneData
-                li= val.common_name
+        h1.title.is-2 What can I plant in my USDA hardiness zone?
+        div.zoneData 
+          ul
+            each val in zoneData
+              li= val.common_name
