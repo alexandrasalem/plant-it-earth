@@ -7,7 +7,7 @@ var db = require("../database");
 
 function setDB() {
     //create table PLANTS for storing basci data on plants
-    db.query("CREATE  TABLE plants (plant_id INT UNIQUE, name VARCHAR (100));", (err, results) => {
+    db.query("CREATE TABLE plants (id SERIAL PRIMARY KEY, plant_id INT, common_name VARCHAR(500), scientific_name VARCHAR(500), vegetable VARCHAR(500), edible VARCHAR(500), edible_part VARCHAR(500), min_temp_f INT, max_temp_f INT, days_to_harvest INT, min_zone VARCHAR(500));", (err, results) => {
         if (err) {
           console.error(err);              
         } 

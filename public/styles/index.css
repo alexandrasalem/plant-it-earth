@@ -49,3 +49,15 @@
 .is-64x64 {
   overflow: hidden;
 }
+
+.columm2 {
+  float: left;
+  width: 45%;
+  margin-right:2%;
+}
+
+.row2:after {
+  content: "";
+  display: table;
+  clear: both;
+}
