@@ -26,21 +26,30 @@ router.post("/", async (req, res) => {
   }
   else {
 
+    //query to identify what usda_zone in the provided zipcode
     db.query('select * from usda_zones where zipcode = ' + req.body.zip + ';', (err, results) => {
       if (err) {
         console.error(err);
         res.status(500).send(err);
       } else {
 
-        //do the second query for the plants we can grow
-        db.query("select * from plants_data where min_zone = '" + results.rows[0].zone + "';", (err2, results2) => {
-          if (err2) {
-            console.error(err2);
-            res.status(500).send(err2);
+        //identify usda_zone id
+        db.query("select id from usda_zone_ids where usda_zone_name = '" + results.rows[0].zone + "';", (err_id, results_id) => {
+          if (err_id) {
+            console.error(err_id);
+            res.status(500).send(err_id);
           } else {
-            res.render("usda", {
-              results: `${results.rows[0].zone}`,
-              zoneData: results2.rows
+            //do the second query for the plants that can grow in a provided zone (all plants that can grow above its minimum usda_zone)
+            db.query("SELECT * FROM plants_data pl JOIN usda_zone_ids z ON z.usda_zone_name = pl.min_zone WHERE z.id >= " + results_id.rows[0].id + ";", (err2, results2) => {
+              if (err2) {
+                console.error(err2);
+                res.status(500).send(err2);
+              } else {
+                res.render("usda", {
+                  results: `${results.rows[0].zone}`,
+                  zoneData: results2.rows
+                });
+              }
             });
           }
         });
