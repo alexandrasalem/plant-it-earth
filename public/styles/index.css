@@ -70,10 +70,29 @@
   overflow: hidden;
 }
 
+#searchBtn{
+  margin-left: 10px;
+}
+
+#errorText {
+  color: red;
+}
+
+#zip
+{
+  max-width: 70px;
+}
+
 .columm2 {
   float: left;
   width: 45%;
   margin-right: 2%;
+}
+
+.searchBox{
+  float: left;
+  width: 25%;
+  margin-right:2%;
 }
 
 .row2:after {
