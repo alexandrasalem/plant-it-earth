@@ -94,7 +94,7 @@ function get_usda_zone(min_temp_f){
 }
 
 function getData(id) {
-    https.get('https://trefle.io/api/v1/plants/' + id + '?token=' + token.token, (resp) => {
+    https.get('https://trefle.io/api/v1/plants/' + id + '?token=' + token, (resp) => {
         let data = '';
     
         // A chunk of data has been recieved.
@@ -172,7 +172,7 @@ function getData(id) {
 }
 
 function getPage() {
-    https.get('https://trefle.io/api/v1/plants?token=' + token.token + "&page=" + cur, (resp) => {
+    https.get('https://trefle.io/api/v1/plants?token=' + token + "&page=" + cur, (resp) => {
     let data = '';
 
     // A chunk of data has been recieved.

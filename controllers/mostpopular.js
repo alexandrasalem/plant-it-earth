@@ -5,7 +5,7 @@ const token= process.env.TREFLE_TOKEN;
 
 // Get image url for a plant id
 async function getTrefleImg(id) {
-  var url = `https://trefle.io/api/v1/plants/${id}?token=${ourToken.token}`;
+  var url = `https://trefle.io/api/v1/plants/${id}?token=${token}`;
   let res = await fetch(url);
   let data = await res.json();
   return data.data.image_url;
