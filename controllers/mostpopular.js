@@ -1,6 +1,7 @@
 var db = require("../database");
 const fetch = require("node-fetch");
-const ourToken = require("../credentials.js");
+// const ourToken = require("../credentials.js");
+const token= process.env.TREFLE_TOKEN;
 
 // Get image url for a plant id
 async function getTrefleImg(id) {

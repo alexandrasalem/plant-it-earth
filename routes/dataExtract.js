@@ -1,4 +1,5 @@
-const token= require('../credentials');
+// const token= require('../credentials');
+const token= process.env.TREFLE_TOKEN 
 const https = require('https');
 var db = require("../database");
 const { isNull } = require('util');

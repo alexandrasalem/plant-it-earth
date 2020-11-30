@@ -1,4 +1,3 @@
-const token= require('../credentials');
 const https = require('https');
 var db = require("../database");
 
