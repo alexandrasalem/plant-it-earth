@@ -7,7 +7,7 @@ block content
     else
       h1(class="title is-2" id="hero-text") #{result["Scientific name"]}
   div(class="media plant-media")
-    img(width= "400" class= "media-left" src=result["Image url"])
+    img(width= "400" class= "media-left" alt='Image of Plant' src=result["Image url"])
     div(class="media-content")
       div(class="content")
         each prop, propName in result
