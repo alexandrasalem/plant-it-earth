@@ -1,22 +1,47 @@
 extends layout
 
 block content 
-  if !err
-    section#search-hero.hero.is-primary.has-bg-img.is-medium
-      .hero-body
-    section.section
-      .container
-      h1.title.is-2 Search for vegetables
-      p Type in a vegetable you want to learn about and hit search. Then click on a listed option to learn more.
+  section#search-hero.hero.is-primary.has-bg-img.is-medium
+    .hero-body
+  section.section
+    .container
+    h1.title.is-2 Search for vegetables
+    h2.subtitle.is-4 Type in a vegetable you want to learn about and hit search. Then click on a listed option to learn more.
+    br
+    .tile.is-10
+      form()
+        .field
+          label(for='veg') Search for a vegetable:
+          .control
+            input#veg.input(type='text' placeholder='tomato, carrot, etc' name='veg')
+          .control
+            input.button(type='submit' onclick="window.location =  '/search/' + veg.value.replace(' ', '%20') + '/1'; return false;" value = "Search")
+    if noResults === "yes"
+      h1 No results found for 
+        strong !{term}
+    else if noResultsNow === "yes"
+      h1 No more results found for 
+        strong !{term}
+        | . Click below to go back to the previous page of results.
+        br
+      input.button(type='submit' onclick="window.location = '/' + window.location.pathname.split('/')[1] + '/' + window.location.pathname.split('/')[2] + '/'+ String(parseInt(window.location.pathname.split('/')[3]) - 1); return false;" value="Go back")
+    else if results
+      br
+      .container.is-10
+        h1 Search results for 
+          strong !{term} 
+          | (select to see more information):
+        br
+        each val in results
+          article.media
+            figure.media-left
+              p.image.is-64x64
+                img(src = val[1] alt= val[0])
+            .media-content
+              .content
+                a(href="/plant/" + val[2]) #{val[0]}
       br
       .container
-        form(action='./' method='post')
-          label(for='veg') Search for a vegetable:
-          input#veg.input(type='text' placeholder='tomato, parsley, etc' name='veg')
-          br
-          input.button(type='submit' value='Search')
-        if results
-            #search-results.container
-              br
-              h1 Search results (select to see more information):
-              p !{results}
+        if notOne
+          input.button(type='submit' onclick="window.location = '/' + window.location.pathname.split('/')[1] + '/' + window.location.pathname.split('/')[2] + '/'+ String(parseInt(window.location.pathname.split('/')[3]) - 1); return false;" value="Go back")
+        input.button(type='submit' onclick="window.location = '/' + window.location.pathname.split('/')[1] + '/' + window.location.pathname.split('/')[2] + '/'+ String(parseInt(window.location.pathname.split('/')[3]) + 1); return false;" value="Keep looking")

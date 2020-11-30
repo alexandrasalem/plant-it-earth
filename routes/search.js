@@ -1,75 +1,43 @@
 const express = require("express");
 const router = express.Router();
-const path = require("path");
-const parser = require("body-parser");
-// const creds = require("../credentials.js");
-const token = process.env.TREFLE_TOKEN //|| creds.token;
-const port = process.env.PORT || 5000;
+const queries = require("../controllers/search");
 
-router.use(
-  parser.urlencoded({
-    extended: false,
-    limit: 1024,
-  })
-);
-
-const fetch = require("node-fetch");
-var url = `https://trefle.io/api/v1/plants/search?token=${token}`;
-
-async function fetchAll(url) {
-  let response = await fetch(url);
-  if (response.status == 200) {
-    let json = await response.json();
-    return json;
-  }
-  throw new Error(response.status);
-}
-
+// Initial search page
 router.get("/", (req, res) => {
   res.render("search");
 });
 
-router.post("/", async (req, res) => {
-  console.log("hello");
-  url = `${url}&q=${req.body.veg}`;
-  var data = await fetchAll(url);
-  var allData = data;
-  var next = data.links.next;
-  while (next != undefined) {
-    let newData = await fetchAll(`https://trefle.io${next}&token=${token}`);
-    next = newData.links.next;
-    allData.data = allData.data.concat(newData.data);
-    allData.links = newData.links;
-    allData.meta = newData.meta;
-    console.log(next);
-  }
-  common_names = [];
-  for (let index = 0; index < allData.data.length; index++) {
-    if (
-      allData.data[index].common_name != null &&
-      allData.data[index].common_name
-        .toLowerCase()
-        .includes(req.body.veg.toLowerCase())
-    ) {
-      common_names.push(
-        `<article class="media">
-        <figure class="media-left">
-          <p class="image is-64x64">
-            <img src="${allData.data[index].image_url}" alt = "${allData.data[index].common_name}">
-          </p>
-        </figure>
-        <div class="media-content">
-          <div class="content">
-            <a href = "/plant/${allData.data[index].id}">${allData.data[index].common_name}</a>
-          </div>
-        </div>
-      </article>`
-      );
+// Search page after first search
+router.get("/:veg/:page_num", async (req, res) => {
+  try {
+    let search_veg = req.url.split("/")[1];
+    let page_num = req.url.split("/")[2];
+    let results = await queries.searchOne(search_veg, page_num);
+    if ((results.length === 0) & (page_num === "1")) {
+      res.render("search", {
+        noResults: "yes",
+        term: search_veg.replace("%20", " "),
+      });
+    } else if (results.length === 0) {
+      res.render("search", {
+        noResultsNow: "yes",
+        term: search_veg.replace("%20", " "),
+      });
+    } else if (page_num == 1) {
+      res.render("search", {
+        results: results,
+        term: search_veg.replace("%20", " "),
+      });
+    } else {
+      res.render("search", {
+        results: results,
+        term: search_veg.replace("%20", " "),
+        notOne: "yes",
+      });
     }
+  } catch (error) {
+    res.render("error", { message: "Something went wrong." });
   }
-  res.render("search", {
-    results: `${common_names.join("")}`,
-  });
 });
 
 module.exports = router;

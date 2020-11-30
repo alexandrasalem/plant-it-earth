@@ -17,10 +17,10 @@ const pgConfig = {
   password: dbPassword,
   database: dbName,
   host: host,
-  port: 5432
+  port: 5432,
 };
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === "production") {
   pgConfig.host = `/cloudsql/${connectionName}`;
 }
 
