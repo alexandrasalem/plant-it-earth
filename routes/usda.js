@@ -1,27 +1,15 @@
 const express = require("express");
 const router = express.Router();
-const path = require("path");
-const parser = require("body-parser");
-const ourToken = require("../credentials.js");
-const port = process.env.PORT || 5000;
 var db = require("../database");
-
-router.use(
-  parser.urlencoded({
-    extended: false,
-    limit: 1024,
-  })
-);
 
 router.get("/", (req, res) => {
   res.render("usda");
 });
 
 router.post("/", async (req, res) => {
-  
-  if(req.body.zip == "") {
+  if (req.body.zip == "") {
     res.render("usda", {
-      error: `Zip can not be blank`
+      error: `Zip can not be blank`,
     });
   }
   else {

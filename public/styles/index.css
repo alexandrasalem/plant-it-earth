@@ -16,12 +16,54 @@
   background-size: cover;
 }
 
+#mostpopular-hero {
+  background: url("https://images.pexels.com/photos/1213859/pexels-photo-1213859.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
+}
+
+#plant-hero {
+  background: url("https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260")
+    center center;
+  background-size: cover;
+}
+
+#QA-hero {
+  background: url("https://images.pexels.com/photos/1640770/pexels-photo-1640770.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260")
+    center center;
+  background-size: cover;
+}
+
 #hero-text {
   text-shadow: 2px 2px 2px black;
 }
 
 .navbar {
   border-bottom: solid black;
+}
+
+#about-us-hero {
+  background: url("https://images.pexels.com/photos/1414651/pexels-photo-1414651.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260")
+    center center;
+  background-size: cover;
+}
+
+.head-shots {
+  border-radius: 50%;
+}
+
+.contributorTitle {
+  text-align: center;
+}
+
+.incorrect-button:focus {
+  background-color: hsl(348, 100%, 61%);
+}
+
+.correct-button:focus {
+  background-color: hsl(141, 71%, 48%);
+}
+.plant-media {
+  margin: 0%;
+  border: solid black;
 }
 
 .is-64x64 {
@@ -44,7 +86,7 @@
 .columm2 {
   float: left;
   width: 45%;
-  margin-right:2%;
+  margin-right: 2%;
 }
 
 .searchBox{
