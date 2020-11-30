@@ -13,6 +13,7 @@ router.get("/", async (req, res) => {
       // results2: popularUsers,
     });
   } catch (error) {
+    console.log(error);
     res.render("error", { message: "Something went wrong." });
   }
 });
