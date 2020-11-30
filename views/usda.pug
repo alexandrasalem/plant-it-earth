@@ -73,4 +73,4 @@ block content
       div.zoneData  
         ul
           each val in zoneData
-            li= val.common_name
+            li: a(href="/plant/" + val.plant_id) !{val.common_name}
